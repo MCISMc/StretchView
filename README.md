@@ -1,5 +1,5 @@
-** Version 1.0 **
-
+++++++ Version 1.0 ++++++
++++++++++++++++++++++++++
 
 ** Features: **
 - StretchView extension work with any html5 video player 
