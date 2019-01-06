@@ -9,9 +9,12 @@ $(document).ready(function() {
         this.webClasses = [
             { selector: ".video-stream.html5-main-video", className: "youtubeExtraClass" }, // YT
             { selector: ".video-container div video", className: "extraClass" }, // Netflix
-            { selector: "#vid_html5_api", className: "extraClass" }, // HBO GO
-            { selector: ".rendererContainer video", className: "extraClass" } // Amazon Prime Video
-            { selector: ".bcPlayer_html5_api video", className: "extraClass" } // Sony LIV
+            { selector: ".rendererContainer video", className: "extraClass" }, // Amazon Prime Video
+			{ selector: "#vid_html5_api", className: "extraClass" }, // Hotstar, HBO GO
+            { selector: ".bcPlayer_html5_api video", className: "extraClass" }, // Sony LIV 
+			{ selector: ".jw-video jw-reset", className: "extraClass" }, // JioCinema, EROS NOW
+            { selector: ".mhp1138_videoWrapper", className: "extraClass" } // Porn Hub
+
         ];
     }
 

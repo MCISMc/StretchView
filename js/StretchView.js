@@ -40,7 +40,7 @@ function StretchView()  {
             this.scale = Math.round(scale * 100) / 100;
 
         }else if(this.mode == 1 || this.mode == 2) {
-            this.scale = 1.33;
+            this.scale = 1.39;
         }else {
             this.scale = 1;
         } 

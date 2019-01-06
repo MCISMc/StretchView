@@ -5,12 +5,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
         chrome.notifications.create(null, {
             type: "basic",
             iconUrl: "images/icon.png",
-            title: "StretchView Video updated",
+            title: "StretchView Add-On updated",
             message: "Update log: updated to version "+version+" ",
         }, function(updateNotificationId) {
             chrome.notifications.onClicked.addListener(function(notificationId) {
                 if (notificationId === updateNotificationId) {
-                    var newURL = "https://github.com/MCISMc/StretchView-Video";
+                    var newURL = "https://github.com/MCISMc/StretchView";
                     chrome.tabs.create({ url: newURL });
                     chrome.notifications.clear(updateNotificationId);
                 }
