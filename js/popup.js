@@ -34,6 +34,11 @@ $(document).ready(function() {
         chrome.storage.local.set({"extensionMode":2},function (){
         });
     });
+	
+
+
+	
+	
 });
 
 

@@ -5,37 +5,43 @@
     <title>StretchView</title>
     <style>
         body {
-            min-width:480px;
+            min-width:340px;
         }
         marquee {
             width: 100%;
-            margin: 10px 10px;
-            color: blue;
-            
+            margin: 5px 10px 0px;
+            color: blue;     
         }
 
         .extension_title{
             text-align: center;
             padding: 3%;
+			font-weight: bold;
         }
 
         .brand_logo{
             height: 50px;
+            max-width: 150px;
             position: relative;
             margin: 5px;
         }
 
         .radio_box{
-            margin-right: 2em;
+			margin: 0 0.8em;
         }
-
-        </style>
+		.jumbotron {
+			padding: 0.1rem 0.1rem !important;
+			margin-bottom: 0.1rem !important;
+			border-radius: .3rem !important;
+			background-color: #fff !important;
+		}
+		.container {
+			padding: 0 1px !important;
+		}
+    </style>
     <script src="../Jquery/jquery-2.1.3.min.js"></script>
     <script src="../js/popup.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="../radio_btn/css/style.css">
 
 </head>
@@ -46,36 +52,41 @@
         <center>
             <h4 class="extension_title">StretchView</h4>
             <div class="jumbotron">
+				<center>
+					<input class="radio_box" type="radio" id="off" name="radio_box" value="0" data-icon='OFF' />
+					<input class="radio_box" type="radio" id="forceStretch" name="radio_box" value="1" data-icon='ForceStretch' />
+					<input class="radio_box" type="radio" id="forceAspect" name="radio_box" value="2" data-icon='ForceAspect' />
+				</center>
+				<hr style="margin: 1rem 0 0.2rem;">
+                <marquee style="font-family:'courier';" direction="scroll">Use 'G' Key from keyboard to toggle modes</marquee>
+				<hr style="margin: 0.2rem 0;">
+				<center>
+                <a href="https://www.primevideo.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/52449861/s100/amazon-prime-video" /></a>
+                <a href="https://www.netflix.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/430997/s100/netflix" /></a>
+				<a href="https://www.youtube.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/59562423/s100/youtube" /></a>                
+				<a href="https://www.jiocinema.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/85114140/s100/jio-cinema" /></a>
+				<a href="https://www.altbalaji.com" target="_blank">
+                    <img class="brand_logo" src="https://static.cloud.altbalaji.com/img/squarelogo.png" /></a>
+				</center>
+         		<center>       
+				<a href="https://www.hotstar.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/4233120/s100/hotstar" /></a>
+				<a href="https://www.sonyliv.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/99832956/s100/sony-liv" /></a>
+				<a href="https://www.zee5.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/93795879/s100/zee5" /></a>
+				<a href="https://www.voot.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/4233119/s100/voot" /></a>  
+                <a href="https://www.erosnow.com" target="_blank">
+                    <img class="brand_logo" src="https://images.justwatch.com/icon/82869265/s100/eros-now" /></a>
+				</center>
 
-                <input class="radio_box" type="radio" id="off" name="sex" value="m" data-icon='Normal' />
-                <input class="radio_box" type="radio" id="forceStretch" name="sex" value="f" data-icon='Stretch' />
-                <input class="radio_box" type="radio" id="forceAspect" name="sex" value="a" data-icon='16:9' />
-
-                <hr>
-
-                <marquee style="font-family:'courier';" direction="scroll">Use 'G' from keyboard to toggle modes</marquee>
-
-                <a href="https://primevideo.com" target="_blank">
-                    <img class="brand_logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png" /></a>
-                <a href="https://hbogo.com" target="_blank">
-                    <img class="brand_logo" src="https://img.icons8.com/ios/500/000000/hbo-go.png" /></a>
-                <a href="https://netflix.com" target="_blank">
-                    <img class="brand_logo" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c529.png" /></a>
-                <a href="https://sonyliv.com" target="_blank">
-                    <img class="brand_logo" src="https://vignette.wikia.nocookie.net/logopedia/images/5/5e/Sony_LIV_Logo.png/revision/latest?cb=20180308101043&format=original" /></a>
-                <a href="https://youtube.com" target="_blank">
-                    <img class="brand_logo" src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c548.png" /></a>
-                <a href="https://jiocinema.com" target="_blank">
-                    <img class="brand_logo" src="https://lh3.googleusercontent.com/LuruMgZZ3D08QNjUzUePG6C55PCkk6tgCNwCaeNKu3K4nKioQKGxKvxx-mUt8f6syw=s180-rw" /></a>
-                <a href="https://erosnow.com" target="_blank">
-                    <img class="brand_logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fe/ErosNow_Stag_New_18_White.jpg" /></a>
-                <a href="https://hotstar.com" target="_blank">
-                    <img class="brand_logo" src="https://seeklogo.com/images/H/hotstar-logo-6A3E165CC3-seeklogo.com.png" /></a>
-
-
-                <br>
-                <hr>
-                <h6>By <a href="https://github.com/MCISMc/StretchView" target="_blank">MCISMc</a></h6>
+				<hr style="margin: 1rem 0 0.2rem;">
+                <h6>By <a href="https://github.com/MCISMc/StretchView" target="_blank">#MCISMc</a></h6>
 
                 <p style="font-size:0.5em;">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the
                     developers are of no responsibility in any case. Logos are copyright to their respective owners</p>
