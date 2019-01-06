@@ -8,7 +8,6 @@ assignees: MCISMc
 ---
 
 **Is your favorite streaming service not supported with this extension ? Please let us know.**
-
 Give us a website address were you would like to see this our extension to be working on.
 
 **Is your feature request related to a problem? Please describe.**
