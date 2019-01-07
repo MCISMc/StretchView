@@ -22,6 +22,7 @@ StretchView.prototype.classCheck = function() {
 
 function StretchView()  {
     this.scale = undefined;
+    this.scaleX = undefined;
     this.fullscreen = false;
     this.mode = 0;
 
@@ -32,18 +33,37 @@ function StretchView()  {
 
         //get aspet ratio
         var aspect = width/height;
-
+		this.fullscreenSet();
         //16:9 = 1.77
+		
+
 
         if(aspect >= 1.88) {
-            var scale = aspect / 1.77;
+ 			this.scaleX = 1.39;
+			var scale = aspect / 1.77;	
             this.scale = Math.round(scale * 100) / 100;
 
         }else if(this.mode == 1 || this.mode == 2) {
-            this.scale = 1.39;
+			if(this.fullscreen == true){
+				this.scaleX = 1;
+				// 1.87 Fullscreen scale correction for => 1280*1024
+				if(width <= 1280 && height <= 1024){
+					this.scale = 1.87;
+				} else {
+					this.scale = 1.33;
+				}				
+			} else {
+				this.scaleX = 1.39;
+				this.scale = 1.33;				
+			}
+			
         }else {
+ 			this.scaleX = 1.39;
             this.scale = 1;
         } 
+		
+
+		
 
 		
 
@@ -67,11 +87,11 @@ function StretchView()  {
         sheet.setAttribute("id", "extraClass");
         sheet.innerHTML = 
             ".extraClassAspect {" +
-            "-webkit-transform: scaleX("+this.scale+")!important;" +
+            "-webkit-transform: scaleX("+this.scaleX+")!important;" +
             //                "object-fit: fill!important;" +
             "}" +
             ".extraClassCrop {" +
-            "-webkit-transform: scale(1.0,1.33"+")!important;" +
+            "-webkit-transform: scale(1.0,"+this.scale+")!important;" +
             //                "object-fit: cover!important;" +
             "}";
         document.body.appendChild(sheet);  
@@ -110,15 +130,40 @@ var initEvents = function(StretchView) {
     });
 
     $(document).on('keydown', null, 'g',function(event) {
-        var state = 0;
-        if(StretchView.mode < 2) {
-            state = StretchView.setMode(StretchView.mode+1);
+        var state = StretchView.mode;
+		
+        if(state < 2) {
+			if(this.fullscreen == true && state == 1){	
+				state = StretchView.setMode(0);				
+			} else {
+				state = StretchView.setMode(StretchView.mode+1);				
+			}
+
         }else{
             state = StretchView.setMode(0);
         }
 
         chrome.storage.local.set({"extensionMode":state},function (){
         });
+		
+		chrome.storage.local.get("extensionMode",function (results){
+			var mode = results.extensionMode;
+			switch(mode) {
+					// 0: off; 1: stretch; 2: fix-aspect-ratio;
+				case 0:
+					$("#off").prop("checked", true);
+					break;
+				case 1:
+					$("#forceStretch").prop("checked", true);
+					break;
+				case 2:
+					$("#forceAspect").prop("checked", true);
+					break;
+
+			}
+		});		
+		
+		
 
 
     });
