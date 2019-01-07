@@ -1,6 +1,6 @@
 # StretchView - Chrome Extension
 
-* With this you can enjoy the trully full-screen viewing experience on computer/laptop screen by stretching or croping the streaming video from website to desired aspect ratio with this extension,
+* With this extension, you can enjoy the truly full-screen viewing experience on computer/laptop screen by stretching or cropping the streaming video from a website to the desired corrected aspect ratio,
 * Remove annoying Letterbox on video [black bars] as much as accurate crop to screen resolution [1920 x 1080].
 * You can choose from the option buttons to select desired mode of croping, or can use the shortcut key "G" to cyle through all the available mode.
 
