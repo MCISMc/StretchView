@@ -13,12 +13,10 @@ StretchView.prototype.classCheck = function() {
         case 2:
             $("video").addClass("extraClassAspect");
             $("video").removeClass("extraClassCrop");
-            break;
-			
+            break;	
     }
 
 };
-
 
 function StretchView()  {
     this.scale = undefined;
@@ -35,8 +33,6 @@ function StretchView()  {
         var aspect = width/height;
 		this.fullscreenSet();
         //16:9 = 1.77
-		
-
 
         if(aspect >= 1.88) {
  			this.scaleX = 1.39;
@@ -61,11 +57,6 @@ function StretchView()  {
  			this.scaleX = 1.39;
             this.scale = 1;
         } 
-		
-
-		
-
-		
 
     };
 
@@ -102,13 +93,11 @@ function StretchView()  {
         return mode;
     };
 
-
 };
 
 var StretchView = new StretchView();
 
 $(document).ready(function() {
-
     chrome.storage.local.get("extensionMode",function (status){
         StretchView.setMode(status.extensionMode);
         StretchView.setScale();
@@ -118,11 +107,9 @@ $(document).ready(function() {
         initEvents(StretchView);
     });
 
-
 });
 
 var initEvents = function(StretchView) {
-
     $( window ).resize(function() {
         StretchView.setScale();
         StretchView.fullscreenSet();
@@ -159,12 +146,8 @@ var initEvents = function(StretchView) {
 				case 2:
 					$("#forceAspect").prop("checked", true);
 					break;
-
 			}
 		});		
-		
-		
-
 
     });
 

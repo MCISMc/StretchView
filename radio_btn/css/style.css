@@ -35,5 +35,7 @@ input[name='radio_box']:checked:after {
   font-weight: bold;
 }
 
-
+input#off:checked:after {
+  color: #E03434 !important;
+}
 
