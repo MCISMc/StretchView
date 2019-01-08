@@ -19,5 +19,11 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
     chrome.storage.local.set({ "extensionMode": 0 }, function () {
     });
+    chrome.storage.local.set({ "contrast": 100 }, function () {
+    });
+    chrome.storage.local.set({ "brightness": 100 }, function () {
+    });
+    chrome.storage.local.set({ "saturation": 100 }, function () {
+    });
     localStorage.setItem('NumberOfImagesCached', 0);
 });
