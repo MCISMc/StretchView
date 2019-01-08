@@ -1,6 +1,5 @@
-
-
 $(document).ready(function () {
+   
     // Image Link and its key name
     var images_to_fetch = {
         "primevideo": "https://images.justwatch.com/icon/52449861/s100/amazon-prime-video",
@@ -27,7 +26,6 @@ $(document).ready(function () {
     }
 
     // IMAGES CHROME STORAGE END
-
 
     var isOn = -1;
     chrome.storage.local.get("extensionMode", function (results) {
@@ -148,7 +146,7 @@ function loadImages(images_to_fetch) {
 function fetchImages(images_to_fetch) {
     Object.keys(images_to_fetch).forEach(ele => {
         chrome.storage.local.set({ ele: "" }, function () {
-            console.log('Blank Set for :' + ele);
+            //console.log('Blank Set for :' + ele);
         });
     });
     recursiveFetch(images_to_fetch, 0);
@@ -161,10 +159,10 @@ function recursiveLoad(images_to_fetch, index) {
         var link = images_to_fetch[key];
 
         var base64 = "";
-
         var base64 = localStorage.getItem(key);
-
+      
         // console.log(base64);
+
         var img_html_base64 = '<a href="http://www.' + key + '.com" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
 
         var brand_logos_dynamic = document.getElementById('brand_logos_dynamic');
@@ -195,13 +193,13 @@ function recursiveFetch(images_to_fetch, index) {
             _wp_http_referer: "/online-tools/base64-image-converter/",
             aatoolstoken: "3e4ft9f",
             aatoolstoken_ip: "3qj3jb7"
-
         }
 
         var XHR = new XMLHttpRequest();
         var urlEncodedData = "";
         var urlEncodedDataPairs = [];
         var name;
+        XHR.responseType = 'document';
 
         // Turn the data object into an array of URL-encoded key/value pairs.
         for (name in data) {
@@ -214,22 +212,19 @@ function recursiveFetch(images_to_fetch, index) {
 
         // Define what happens on successful data submission
         XHR.addEventListener('load', function (event) {
-
-            var e = document.getElementById("temp_div");
-            e.innerHTML = XHR.response;
-            // var img_html_value = document.getElementById("ta_html").value;
-            var img_html_value = document.getElementById("ta_raw").value;
-
-            // alert(img_html_value);
-
+         
+            //console.log(XHR.responseXML.getElementById("ta_raw").value);
+            // e.innerHTML = XHR.responseXML.getElementById("ta_raw");
+            //var img_html_value = document.getElementById("ta_raw").value;
+            var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
+  
             localStorage.setItem(key, img_html_value);
             localStorage.setItem('NumberOfImagesCached', (index + 1));
 
             // Clearing the div for better performance as it is now not needed
-            e.innerHTML = "";
+            //e.innerHTML = "";
 
             recursiveFetch(images_to_fetch, index + 1);
-
         });
 
         // Define what happens in case of error
@@ -253,5 +248,3 @@ function recursiveFetch(images_to_fetch, index) {
         loadImages(images_to_fetch);
     }
 }
-
-
