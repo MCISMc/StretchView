@@ -66,6 +66,79 @@ $(document).ready(function () {
         });
     });
 
+    $("#video_adjustments_reset").click(function () {
+        chrome.storage.local.set({ "contrast": 100}, function () {
+        });
+        chrome.storage.local.set({ "brightness": 100 }, function () {
+        });
+        chrome.storage.local.set({ "saturation": 100 }, function () {
+        });
+
+        var brightness_slider = document.getElementById("brightness_slider");
+        brightness_slider.value = 100;
+        var brightness_slider_output = document.getElementById("brightness_slider_output");
+        brightness_slider_output.innerHTML = brightness_slider.value; // Display the default slider value  
+        // --------------------------
+        var contrast_slider = document.getElementById("contrast_slider");
+        contrast_slider.value = 100;
+        var contrast_slider_output = document.getElementById("contrast_slider_output");
+        contrast_slider_output.innerHTML = contrast_slider.value; // Display the default slider value   
+        // ---------------------
+        var saturation_slider = document.getElementById("saturation_slider");
+        saturation_slider.value = 100;
+        var saturation_slider_output = document.getElementById("saturation_slider_output");
+        saturation_slider_output.innerHTML = saturation_slider.value; // Display the default slider value
+
+    });
+
+    // Video Adjustment Slider Controller STARTS
+    chrome.storage.local.get(["brightness", "contrast", "saturation"], function (results) {
+
+        // console.log(results);
+
+        var brightness = results.brightness;
+        var contrast = results.contrast;
+        var saturation = results.saturation;
+
+        var brightness_slider = document.getElementById("brightness_slider");
+        brightness_slider.value = brightness;
+        var brightness_slider_output = document.getElementById("brightness_slider_output");
+        brightness_slider_output.innerHTML = brightness_slider.value; // Display the default slider value  
+        // --------------------------
+        var contrast_slider = document.getElementById("contrast_slider");
+        contrast_slider.value = contrast;
+        var contrast_slider_output = document.getElementById("contrast_slider_output");
+        contrast_slider_output.innerHTML = contrast_slider.value; // Display the default slider value   
+        // ---------------------
+        var saturation_slider = document.getElementById("saturation_slider");
+        saturation_slider.value = saturation;
+        var saturation_slider_output = document.getElementById("saturation_slider_output");
+        saturation_slider_output.innerHTML = saturation_slider.value; // Display the default slider value
+
+        // Update the current slider value (each time you drag the slider handle)
+        contrast_slider.oninput = function () {
+            contrast_slider_output.innerHTML = this.value;
+            chrome.storage.local.set({ "contrast": contrast_slider.value }, function () {
+            });
+        }
+
+        // Update the current slider value (each time you drag the slider handle)
+        brightness_slider.oninput = function () {
+            brightness_slider_output.innerHTML = this.value;
+            chrome.storage.local.set({ "brightness": brightness_slider.value }, function () {
+            });
+        }
+
+        // Update the current slider value (each time you drag the slider handle)
+        saturation_slider.oninput = function () {
+            saturation_slider_output.innerHTML = this.value;
+            chrome.storage.local.set({ "saturation": saturation_slider.value }, function () {
+            });
+        }
+
+    });
+    // Video Adjustment Slider Controller STARTS
+
 });
 
 function loadImages(images_to_fetch) {
@@ -91,9 +164,9 @@ function recursiveLoad(images_to_fetch, index) {
 
         var base64 = localStorage.getItem(key);
 
-        console.log(base64);
+        // console.log(base64);
         var img_html_base64 = '<a href="http://www.' + key + '.com" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
-    
+
         var brand_logos_dynamic = document.getElementById('brand_logos_dynamic');
         brand_logos_dynamic.insertAdjacentHTML("beforeend", img_html_base64);
 
