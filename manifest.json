@@ -3,25 +3,43 @@
       "scripts": [ "js/background.js" ]
    },
    "browser_action": {
-      "default_icon": "images/icon.png",
       "default_popup": "html/popup.html",
-      "default_title": "StretchView"
+      "default_title": "StretchView",
+      "default_icon": {
+        "16": "images/logo-48.png",
+        "32": "images/logo-32.png",
+        "48": "images/logo-48.png",
+        "128": "images/logo-128.png"
+      }
+
 
    },
    "content_scripts": [ {
       "js": [ "Jquery/jquery-2.1.3.min.js", "Jquery/jquery.hotkeys.js", "Jquery/jquery.fullscreen.js", "js/StretchView.js" ],
-      "matches": [ "https://*.youtube.com/*", "https://*.primevideo.com/*", "https://*.hotstar.com/*", "https://*.sonyliv.com/*", "https://*.netflix.com/*", "https://*.erosnow.com/*" , "https://*.jiocinema.com/*" , "https://*.pornhub.com/*" ]
+      "matches": [ "https://*.youtube.com/*", "https://*.primevideo.com/*", "https://*.hotstar.com/*", "https://*.sonyliv.com/*", "https://*.netflix.com/*", "https://*.erosnow.com/*" , "https://*.voot.com/*" , "https://*.zee5.com/*" , "https://*.altbalaji.com/*" , "https://*.jiocinema.com/*" , "https://*.pornhub.com/*" ]
    } ],
-   "description": "Force stretch videos to full screen display and remove annoying black bars from popular streaming websites",
+
    "icons": {
-      "128": "images/icon.png"
+        "16": "images/logo-48.png",
+        "32": "images/logo-32.png",
+        "48": "images/logo-48.png",
+        "128": "images/logo-128.png"
+	  
+	  
+	  
    },
-   "manifest_version": 2,
-   "name": "StretchView",
-   "default_locale": "en",
-   "short_name": "StretchView",
-   "permissions": [ "activeTab", "storage", "notifications" ],
+
+
+
+
+   
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "3.0"
+   "manifest_version": 2,
+   "default_locale": "en",
+   "permissions": [ "activeTab", "storage", "notifications" ],
+   "name": "StretchView",
+   "short_name": "StretchView",
+   "description": "Force stretch videos to full screen display and remove annoying black bars from popular streaming websites",
+   "version": "3.4"
 }
 

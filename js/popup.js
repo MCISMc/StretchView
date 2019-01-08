@@ -4,16 +4,17 @@ $(document).ready(function() {
         var mode = results.extensionMode;
         switch(mode) {
                 // 0: off; 1: stretch; 2: fix-aspect-ratio;
-            case 0:
-                $("#off").prop("checked", true);
-                break;
             case 1:
                 $("#forceStretch").prop("checked", true);
                 break;
             case 2:
                 $("#forceAspect").prop("checked", true);
                 break;
-        }
+            case 0:
+			default:
+                $("#off").prop("checked", true);
+                break;
+			}
     });
     $("#off").click(function() {
         $("#forceStretch").prop("checked", false);
@@ -34,6 +35,11 @@ $(document).ready(function() {
         chrome.storage.local.set({"extensionMode":2},function (){
         });
     });
+	
+
+
+	
+	
 });
 
 
