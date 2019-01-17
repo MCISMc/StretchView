@@ -4,128 +4,17 @@
 <head>
     <title>StretchView</title>
     <style>
-        ::-webkit-scrollbar {
-        width: 3px;
-        }
-                /* Track */
-        ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px gray; 
-        border-radius: 10px;
-        }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-        background: lightgray; 
-        border-radius: 10px;
-        }
-        body {
-            min-width:340px;
-        }
-        marquee {
-            width: 100%;
-            margin: 5px 10px 0px;
-            color: blue;     
-        }
-
-        td{
-            align-content: center;
-            padding: 0.5em;
-        }
-
-        .extension_title{
-            text-align: center;
-            padding: 5px 10px;
-			font-weight: bold;
-        }
-        
-        .category_title{
-            align-content: center;
-            text-align: center;
-            padding: 5px 10px;
-			font-weight: bold;
-            font-style: normal;
-        }
-        .option_title{
-            text-align: center;
-            padding: 5px 10px;
-			font-weight: normal;
-            font-style: italic;
-        }
-
-        .brand_logo{
-            height: 50px;
-            max-width: 150px;
-            position: relative;
-            margin: 5px;
-        }
-
-        .radio_box{
-			margin: 0 0.8em;
-        }
-		.jumbotron {
-			padding: 0.1rem 0.1rem !important;
-			margin-bottom: 0.1rem !important;
-			border-radius: .3rem !important;
-			background-color: #fff !important;
-		}
-		.container {
-			padding: 0 1px !important;
-		}
-
-        .slidecontainer {
-        align-content: center;
-        width: 100%; /* Width of the outside container */
-        }
-        .slider {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 15px;
-        border-radius: 5px;   
-        background: #d3d3d3;
-        outline: none;
-        opacity: 0.7;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
-        }
-
-        .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%; 
-        background: #4CAF50;
-        cursor: pointer;
-        }
-        .slider::-moz-range-thumb {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background: #4CAF50;
-        cursor: pointer;
-        }
-
-        .loader {
-        border: 16px solid #f3f3f3; /* Light grey */
-        border-top: 16px solid #E03434; /* StrechView Logo Color */
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-        }
     </style>
-    <script src="../Jquery/jquery-2.1.3.min.js"></script>
-    <script src="../js/popup.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap/4.1.3/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="../radio_btn/css/style.css">
 
+    <script src="../Jquery/jquery-2.1.3.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap/4.1.3/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    
+    <script src="../js/popup.js"></script>   
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/radio_btn/css/style.css">            
 </head>
 
 <body>
@@ -139,19 +28,22 @@
             <hr style="margin: 0.2rem 0 0.5rem 0;">
             <div class="jumbotron">
                 <center>
-                    <input class="radio_box" type="radio" id="off" name="radio_box" value="0" data-icon='OFF' />
-                    <input class="radio_box" type="radio" id="forceStretch" name="radio_box" value="1" data-icon='ForceStretch' />
-                    <input class="radio_box" type="radio" id="forceAspect" name="radio_box" value="2" data-icon='ForceAspect' />
+                    <input class="radio_box" type="radio" id="off" name="radio_box" value="0" data-icon='OFF' data-toggle="tooltip" data-placement="bottom" title="Defaults"/>
+                    <input class="radio_box" type="radio" id="forceStretch" name="radio_box" value="1" data-icon='FullView' data-toggle="tooltip" data-placement="bottom" title="FullView video cropping and stretching"/>
+                    <input class="radio_box" type="radio" id="forceAspect" name="radio_box" value="2" data-icon='StretchView' data-toggle="tooltip" data-placement="bottom" title="Stretch video upto screen width"/>
                 </center>
                 <hr style="margin: 0.9rem 0 0.2rem;">
-                <marquee style="font-family:'courier';" direction="scroll">Use keyboard shortcut-key "G" to toggle
-                    between above modes.</marquee>
+                <marquee style="font-family:'courier';" direction="scroll">Use keyboard shortcut-key "G" to toggle between above modes.</marquee>
                 <hr style="margin: 0.2rem 0;">
                 <center>
-                    <div class="category_title" style="margin: 10px 0px;padding: 0  10px; color: #000000">
-                        Video Adjustment <i class="fa fa-times" aria-hidden="true" style=" color: gray;float:right;" id="video_adjustments_reset"></i></div>
-                    <hr style="margin: 0.2rem 5em;">
-                    <table>
+                  <div class="video_adjust_container">
+                    <span class="video_adjust_title" data-toggle="tooltip" data-html="true" data-placement="top" title="Video <em>Color Correction Tool.</em></br> ( Click to <b>SHOW / HIDE</b> )">Video Adjustments ( BETA )</span >
+                    <i class="fa fa-times" id="video_adjustments_reset" aria-hidden="true" style=" color: gray;float:right;" data-toggle="tooltip" data-placement="left" title="Reset video adjustments">&nbsp</i>
+                    <div class="video_adjust_content">
+                        <div style="clear: both;"></div>
+                        <hr style="margin: 0.2rem 0 0.5em 0;">
+                        <div style="clear: both;"></div>
+                        <table>
                         <tbody>
                             <tr>
                                 <td>
@@ -161,11 +53,11 @@
                                 </td>
                                 <td>
                                     <div class="slidecontainer">
-                                        <input type="range" min="1" max="200" value="100" class="slider" id="brightness_slider">
+                                        <input type="range" min="1" max="200" value="100" class="custom-range" id="brightness_slider">
                                     </div>
                                 </td>
                                 <td>
-                                    <p id="brightness_slider_output">100</p>
+                                    <span id="brightness_slider_output">100</span>
                                 </td>
                             </tr>
                             <tr>
@@ -176,11 +68,11 @@
                                 </td>
                                 <td>
                                     <div class="slidecontainer">
-                                        <input type="range" min="1" max="200" value="100" class="slider" id="contrast_slider">
+                                        <input type="range" min="1" max="200" value="100" class="custom-range" id="contrast_slider">
                                     </div>
                                 </td>
                                 <td>
-                                    <p id="contrast_slider_output">100</p>
+                                    <span id="contrast_slider_output">100</span>
                                 </td>
                             </tr>
                             <tr>
@@ -191,30 +83,30 @@
                                 </td>
                                 <td>
                                     <div class="slidecontainer">
-                                        <input type="range" min="1" max="200" value="100" class="slider" id="saturation_slider">
+                                        <input type="range" min="1" max="200" value="100" class="custom-range" id="saturation_slider">
                                     </div>
                                 </td>
                                 <td>
-                                    <p id="saturation_slider_output">100</p>
+                                    <span id="saturation_slider_output">100</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
+					</div>
+                 </div>
                 </center>
-                <hr style="margin: 1rem 0 0.2rem;">
+                <hr style="margin: 0.2rem 0 0.2rem;">
                 <center id="brand_logos_dynamic">
                     <div class="loader" id="loader" style="display: none"></div>
                 </center>
                 <hr style="margin: 1rem 0 0.2rem;">
-                <h6>By <a href="https://github.com/MCISMc/StretchView" target="_blank">#MCISMc</a></h6>
+                <h6>Created by <a href="https://github.com/MCISMc/" target="_blank">#MCISMc</a> and <a href="https://github.com/pishangujeniya/" target="_blank">Pishang Ujeniya</a></h6>
 
                 <p style="font-size:0.5em;">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the
                     developers are of no responsibility in any case. Logos are copyright to their respective owners</p>
             </div>
         </center>
     </div>
-    <div id="temp_div" style="display : none"></div>
 </body>
 
 </html>

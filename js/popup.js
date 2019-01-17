@@ -5,7 +5,7 @@ $(document).ready(function () {
         "primevideo": "https://images.justwatch.com/icon/52449861/s100/amazon-prime-video",
         "netflix": "https://images.justwatch.com/icon/430997/s100/netflix",
         "youtube": "https://images.justwatch.com/icon/59562423/s100/youtube",
-        "jio_cinema": "https://images.justwatch.com/icon/85114140/s100/jio-cinema",
+        "jiocinema": "https://images.justwatch.com/icon/85114140/s100/jio-cinema",
         "altbalaji": "https://upload.wikimedia.org/wikipedia/en/3/3f/ALT_Balaji_Logo.png",
         "hotstar": "https://images.justwatch.com/icon/4233120/s100/hotstar",
         "sonyliv": "https://images.justwatch.com/icon/99832956/s100/sony-liv",
@@ -64,78 +64,66 @@ $(document).ready(function () {
         });
     });
 
-    $("#video_adjustments_reset").click(function () {
-        chrome.storage.local.set({ "contrast": 100}, function () {
+    $(".video_adjust_title").click(function () {
+        $header = $(this);
+        $content = $(".video_adjust_content");
+        $content.slideToggle(200, function () {
+            //execute this after slideToggle is done
         });
-        chrome.storage.local.set({ "brightness": 100 }, function () {
-        });
-        chrome.storage.local.set({ "saturation": 100 }, function () {
-        });
+    
+    });
 
-        var brightness_slider = document.getElementById("brightness_slider");
-        brightness_slider.value = 100;
-        var brightness_slider_output = document.getElementById("brightness_slider_output");
-        brightness_slider_output.innerHTML = brightness_slider.value; // Display the default slider value  
-        // --------------------------
-        var contrast_slider = document.getElementById("contrast_slider");
-        contrast_slider.value = 100;
-        var contrast_slider_output = document.getElementById("contrast_slider_output");
-        contrast_slider_output.innerHTML = contrast_slider.value; // Display the default slider value   
-        // ---------------------
-        var saturation_slider = document.getElementById("saturation_slider");
-        saturation_slider.value = 100;
-        var saturation_slider_output = document.getElementById("saturation_slider_output");
-        saturation_slider_output.innerHTML = saturation_slider.value; // Display the default slider value
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger: "hover"
+   });
+
+    $("#video_adjustments_reset").click(function () {
+        chrome.storage.local.set({ "contrast": 100}, function () {});
+        chrome.storage.local.set({ "brightness": 100 }, function () {});
+        chrome.storage.local.set({ "saturation": 100 }, function () {});
+
+        $("#brightness_slider").val(100);
+        $("#contrast_slider").val(100);
+        $("#saturation_slider").val(100);
+
+        $('#brightness_slider_output').html($('#brightness_slider').val());
+        $('#contrast_slider_output').html($('#contrast_slider').val());
+        $('#saturation_slider_output').html($('#saturation_slider').val());
 
     });
 
     // Video Adjustment Slider Controller STARTS
     chrome.storage.local.get(["brightness", "contrast", "saturation"], function (results) {
-
-        // console.log(results);
-
-        var brightness = results.brightness;
-        var contrast = results.contrast;
-        var saturation = results.saturation;
-
-        var brightness_slider = document.getElementById("brightness_slider");
-        brightness_slider.value = brightness;
-        var brightness_slider_output = document.getElementById("brightness_slider_output");
-        brightness_slider_output.innerHTML = brightness_slider.value; // Display the default slider value  
-        // --------------------------
-        var contrast_slider = document.getElementById("contrast_slider");
-        contrast_slider.value = contrast;
-        var contrast_slider_output = document.getElementById("contrast_slider_output");
-        contrast_slider_output.innerHTML = contrast_slider.value; // Display the default slider value   
-        // ---------------------
-        var saturation_slider = document.getElementById("saturation_slider");
-        saturation_slider.value = saturation;
-        var saturation_slider_output = document.getElementById("saturation_slider_output");
-        saturation_slider_output.innerHTML = saturation_slider.value; // Display the default slider value
+        //console.log(results);
+        
+        $("#brightness_slider").val(results.brightness);
+        $("#contrast_slider").val(results.contrast); 
+        $("#saturation_slider").val(results.saturation);
+ 
+        $('#brightness_slider_output').html($('#brightness_slider').val());
+        $('#contrast_slider_output').html($('#contrast_slider').val());
+        $('#saturation_slider_output').html($('#saturation_slider').val());
 
         // Update the current slider value (each time you drag the slider handle)
-        contrast_slider.oninput = function () {
-            contrast_slider_output.innerHTML = this.value;
-            chrome.storage.local.set({ "contrast": contrast_slider.value }, function () {
-            });
-        }
+        $("#contrast_slider").on("change mousemove", function() {
+            $('#contrast_slider_output').html($('#contrast_slider').val());
+            chrome.storage.local.set({ "contrast": $("#contrast_slider").val() }, function () {});
+        });
 
         // Update the current slider value (each time you drag the slider handle)
-        brightness_slider.oninput = function () {
-            brightness_slider_output.innerHTML = this.value;
-            chrome.storage.local.set({ "brightness": brightness_slider.value }, function () {
-            });
-        }
+        $("#brightness_slider").on("change mousemove", function() {
+            $('#brightness_slider_output').html($('#brightness_slider').val());
+            chrome.storage.local.set({ "brightness": $("#brightness_slider").val() }, function () {});
+        });
 
         // Update the current slider value (each time you drag the slider handle)
-        saturation_slider.oninput = function () {
-            saturation_slider_output.innerHTML = this.value;
-            chrome.storage.local.set({ "saturation": saturation_slider.value }, function () {
-            });
-        }
+        $("#saturation_slider").on("change mousemove", function() {
+            $('#saturation_slider_output').html($('#saturation_slider').val());
+            chrome.storage.local.set({ "saturation": $("#saturation_slider").val() }, function () {});
+        });
 
     });
-    // Video Adjustment Slider Controller STARTS
+    // Video Adjustment Slider Controller ENDS
 
 });
 
@@ -214,7 +202,7 @@ function recursiveFetch(images_to_fetch, index) {
         XHR.addEventListener('load', function (event) {
          
             //console.log(XHR.responseXML.getElementById("ta_raw").value);
-            // e.innerHTML = XHR.responseXML.getElementById("ta_raw");
+            // e.html = XHR.responseXML.getElementById("ta_raw");
             //var img_html_value = document.getElementById("ta_raw").value;
             var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
   
@@ -222,7 +210,7 @@ function recursiveFetch(images_to_fetch, index) {
             localStorage.setItem('NumberOfImagesCached', (index + 1));
 
             // Clearing the div for better performance as it is now not needed
-            //e.innerHTML = "";
+            //e.html = "";
 
             recursiveFetch(images_to_fetch, index + 1);
         });

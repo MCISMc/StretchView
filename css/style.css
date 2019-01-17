@@ -1,3 +1,7 @@
+body {
+    min-width:340px;
+}
+
 .youtubeExtraClass {
     height: 133.9%!important;
     width: 100%!important;
@@ -7,7 +11,6 @@
     transform: translateY(-12.5%)!important;
 }
 
-
 .extraClass {
     height: 133.9%!important;
     width: 100%!important;
@@ -15,4 +18,130 @@
     top: 0%!important;
     position:absolute!important;
 /*    transform: translateY(-50%)!important;*/
+}
+
+marquee {
+    width: 100%;
+    margin: 5px 10px 0px;
+    color: #0056b3 ;     
+}
+
+td{
+    align-content: center;
+    padding: 0.5em;
+}
+
+.extension_title{
+    text-align: center;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.video_adjust_container,
+.video_adjust_container div {
+    width:100%;
+}
+
+.video_adjust_container .video_adjust_title {
+    cursor: pointer;
+    font-weight: bold;
+    align-content: center;
+    text-align: center;
+    font-style: normal;
+    margin: 5px 0px;
+    color: #0056b3 ;   
+}
+
+.video_adjust_container .video_adjust_content {
+    display: none;
+}
+
+i#video_adjustments_reset {
+    color: gray;
+    float: right;
+    line-height: unset;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.option_title{
+    text-align: center;
+    padding: 5px 10px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.brand_logo{
+    height: 50px;
+    max-width: 150px;
+    position: relative;
+    margin: 5px;
+
+}
+
+.radio_box{
+    margin: 0 0.8em;
+    cursor: pointer;
+}
+
+.jumbotron {
+    padding: 0.1rem 0.1rem !important;
+    margin-bottom: 0.1rem !important;
+    border-radius: .3rem !important;
+    background-color: #fff !important;
+}
+
+.container {
+    padding: 0 1px !important;
+}
+
+.slidecontainer {
+    align-content: center;
+    width: 100%; /* Width of the outside container */
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+    border: 0;
+    /* background: url('images/contrasticon.png');*/
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #E03434; /* StrechView Logo Color */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
