@@ -16,7 +16,7 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ### Download the extension from here
 
-* [https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+* [<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
 
 ## TO DO
 - Fix things as Google makes changes
