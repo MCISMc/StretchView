@@ -10,13 +10,13 @@ With this extension, you can enjoy the truly full-screen viewing experience on c
 
 Feel free to tell me any things you like or dislike as well as graphical changes and I'll take everything into consideration. Thanks for trying out StrechView, and I hope you enjoy StrechView.
 
-### Download the extension from here
-
-* [Chrome Webstore](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
-
 ## Works with
 
 <img src="https://images.justwatch.com/icon/52449861/s100/amazon-prime-video" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/430997/s100/netflix" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/59562423/s100/youtube" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/85114140/s100/jio-cinema" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://static.cloud.altbalaji.com/img/squarelogo.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/4233120/s100/hotstar" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/99832956/s100/sony-liv" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/93795879/s100/zee5" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/4233119/s100/voot" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://images.justwatch.com/icon/82869265/s100/eros-now" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+### Download the extension from here
+
+* [Chrome Webstore](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
 
 ## TO DO
 =====================
