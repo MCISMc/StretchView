@@ -19,11 +19,9 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 * [Chrome Webstore](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
 
 ## TO DO
-=====================
 - Fix things as Google makes changes
 
 ## CHANGE LOG
-=====================
 
 v4.1
 --------------------
