@@ -14,8 +14,7 @@ StretchView.prototype.classCheck = function () {
             $("video").addClass("extraClassAspect");
             $("video").removeClass("extraClassCrop");
             break;
-
-    }
+    }   
 
 };
 
@@ -35,7 +34,6 @@ function StretchView() {
         var aspect = width / height;
         this.fullscreenSet();
         //16:9 = 1.77
-
 
 
         if (aspect >= 1.88) {
@@ -106,11 +104,10 @@ $(document).ready(function () {
         StretchView.setScale();
         StretchView.fullscreenSet();
         StretchView.createCSS();
-
-
         initEvents(StretchView);
     });
     setVideoAdjustments();
+    setVideopipEventHandler();
 });
 
 function setVideoAdjustments() {
@@ -127,6 +124,26 @@ function setVideoAdjustments() {
 
     });
 }
+
+
+function setVideopipEventHandler() {
+    var video_elements_list = document.getElementsByTagName("video");
+    if(video_elements_list) {
+      for (var i = 0; i < video_elements_list.length; i++) {
+        video_elements_list[i].addEventListener('enterpictureinpicture', function(event) {
+            chrome.storage.local.set({ "togglePiP": true }, function () {
+                $("#btnPiP").prop("checked", true);
+            });        
+        });
+
+        video_elements_list[i].addEventListener('leavepictureinpicture', function(event) {
+            chrome.storage.local.set({ "togglePiP": false }, function () {
+                $("#btnPiP").prop("checked", false);
+            });
+        });
+      }
+    }    
+} 
 
 var initEvents = function (StretchView) {
 
@@ -172,6 +189,11 @@ var initEvents = function (StretchView) {
 
     });
 
+    $(document).on('keydown', null, 'i', function (event) {
+        chrome.storage.local.set({ "togglePiP": $('#btnPiP').prop('checked')}, function () {});
+
+    });
+
     chrome.storage.onChanged.addListener(function (changes) {
         if ("extensionMode" in changes) {
             StretchView.setMode(changes.extensionMode.newValue);
@@ -180,5 +202,6 @@ var initEvents = function (StretchView) {
         StretchView.createCSS();
         StretchView.classCheck();
         setVideoAdjustments();
+
     });
 };

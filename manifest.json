@@ -23,8 +23,8 @@
             "js/StretchView.js"
         ],
 		 
-		"matches": [ "https://*.youtube.com/*", "https://*.primevideo.com/*", "https://*.hotstar.com/*", "https://*.sonyliv.com/*", "https://*.netflix.com/*", "https://*.erosnow.com/*" , "https://*.voot.com/*" , "https://*.zee5.com/*" , "https://*.altbalaji.com/*" , "https://*.jiocinema.com/*" , "https://*.pornhub.com/*" ],
-		"run_at": "document_start"
+      "matches": [ "https://*.youtube.com/*", "https://*.primevideo.com/*", "https://*.twitch.tv/*", "https://*.hotstar.com/*", "https://*.sonyliv.com/*", "https://*.netflix.com/*", "https://*.erosnow.com/*" , "https://*.voot.com/*" , "https://*.zee5.com/*" , "https://*.altbalaji.com/*" , "https://*.jiocinema.com/*" , "https://*.facebook.com/*", "https://*.twitter.com/*", "https://*.instagram.com/*", "https://*.pornhub.com/*" ],
+      "run_at": "document_start"
       }
    ],
    "icons": {

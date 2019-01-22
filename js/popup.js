@@ -44,6 +44,11 @@ $(document).ready(function () {
                 break;
         }
     });
+    
+    chrome.storage.local.get("togglePiP", function (results) {
+    $("#btnPiP").prop("checked", results.togglePiP);
+
+    });
     $("#off").click(function () {
         $("#forceStretch").prop("checked", false);
         $("#forceAspect").prop("checked", false);
@@ -64,6 +69,28 @@ $(document).ready(function () {
         });
     });
 
+    $("#btnPiP").on('change', function () {
+        chrome.storage.local.set({ "togglePiP": $(this).prop('checked')}, function () {});
+        const code = `(async () => {
+            var video_elements_list = document.getElementsByTagName("video");
+            if(video_elements_list) {
+              for (var i = 0; i < video_elements_list.length; i++) {
+                if(!video_elements_list[i].paused) {
+                    try {
+                      if (video_elements_list[i] !== document.pictureInPictureElement) {
+                        await video_elements_list[i].requestPictureInPicture();
+                      } else { await document.exitPictureInPicture(); }
+                    }
+                    catch(error) { console.log(error); }
+                    finally { btntogglePiP.disabled = false;}
+                }
+              }
+            } 
+        })()`;
+        chrome.tabs.executeScript({ code, allFrames: true });
+
+    });
+
     $(".video_adjust_title").click(function () {
         $header = $(this);
         $content = $(".video_adjust_content");
@@ -75,7 +102,7 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip({
         trigger: "hover"
-   });
+    });
 
     $("#video_adjustments_reset").click(function () {
         chrome.storage.local.set({ "contrast": 100}, function () {});

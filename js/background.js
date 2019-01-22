@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
     if (details.reason == "update") {
         chrome.notifications.create(null, {
             type: "basic",
-            iconUrl: "images/icon.png",
+            iconUrl: "images/logo-128.png",
             title: "StretchView Add-On updated",
             message: "Update log: updated to version " + version + " ",
         }, function (updateNotificationId) {
@@ -19,6 +19,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
     chrome.storage.local.set({ "extensionMode": 0 }, function () {
     });
+    chrome.storage.local.set({ "togglePiP": false }, function () {
+    });
     chrome.storage.local.set({ "contrast": 100 }, function () {
     });
     chrome.storage.local.set({ "brightness": 100 }, function () {
@@ -27,3 +29,4 @@ chrome.runtime.onInstalled.addListener(function (details) {
     });
     localStorage.setItem('NumberOfImagesCached', 0);
 });
+
