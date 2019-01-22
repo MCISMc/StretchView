@@ -56,7 +56,7 @@ td{
     display: none;
 }
 
-i#video_adjustments_reset {
+b#video_adjustments_reset {
     color: gray;
     float: right;
     line-height: unset;
