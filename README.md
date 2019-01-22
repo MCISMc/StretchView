@@ -13,7 +13,7 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ## Works with
 
-* [<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+[<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
 
 ### Download the extension from here
 
