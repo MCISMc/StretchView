@@ -28,5 +28,30 @@ chrome.runtime.onInstalled.addListener(function (details) {
     chrome.storage.local.set({ "saturation": 100 }, function () {
     });
     localStorage.setItem('NumberOfImagesCached', 0);
+    chrome.commands.onCommand.addListener(function (command) {
+        console.log('Command:', command);
+        if (command == "toggle-feature-foo") {
+            //  it is for pip
+            chrome.storage.local.set({ "togglePiP": true }, function () { });
+            const code = `(async () => {
+            var video_elements_list = document.getElementsByTagName("video");
+            if(video_elements_list) {
+              for (var i = 0; i < video_elements_list.length; i++) {
+                if(!video_elements_list[i].paused) {
+                    try {
+                      if (video_elements_list[i] !== document.pictureInPictureElement) {
+                        await video_elements_list[i].requestPictureInPicture();
+                      } else { await document.exitPictureInPicture(); }
+                    }
+                    catch(error) { console.log(error); }
+                    finally { btntogglePiP.disabled = false;}
+                }
+              }
+            } 
+        })()`;
+            chrome.tabs.executeScript({ code, allFrames: true });
+        }
+    });
 });
+
 
