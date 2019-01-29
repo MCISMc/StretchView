@@ -17,8 +17,8 @@ $(document).ready(function () {
     // IMAGES CHROME STORAGE START
 
     var NumberOfImagesCached = localStorage.getItem('NumberOfImagesCached');
-
-    if (NumberOfImagesCached > 0) {
+    
+    if (NumberOfImagesCached == Object.keys(images_to_fetch).length) {
         loadImages(images_to_fetch);
     } else {
         document.getElementById("loader").style.display = "block";
