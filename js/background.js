@@ -44,7 +44,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
                       } else { await document.exitPictureInPicture(); }
                     }
                     catch(error) { console.log(error); }
-                    finally { btntogglePiP.disabled = false;}
+                    finally {}
                 }
               }
             } 

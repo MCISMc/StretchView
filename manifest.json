@@ -40,7 +40,13 @@
             "https://*.pornhub.com/*"
          ],
          "run_at": "document_start"
-      }
+      },
+      
+      {
+         "css": ["css/youtubeFix.css"],
+         "matches": [ "https://*.youtube.com/*" ],
+         "run_at": "document_start"
+      }      
    ],
    "icons": {
       "16": "images/logo-48.png",
@@ -58,13 +64,13 @@
    ],
    "name": "StretchView",
    "short_name": "StretchView",
-   "description": "Force stretch videos to full screen display and remove annoying black bars from popular streaming websites",
-   "version": "4.2.5",
+   "description": "Force stretch videos to full screen display and remove annoying black bars from popular streaming websites, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode enhance your YouTube playback experience",
+   "version": "4.3.6",
    "commands": {
       "toggle-feature-foo": {
          "suggested_key": {
-            "default": "Ctrl+Shift+Y",
-            "mac": "Command+Shift+Y"
+            "default": "Ctrl+B",
+            "mac": "Command+B"
          },
          "description": "Toggle PIP Picture-in-Picture"
       }

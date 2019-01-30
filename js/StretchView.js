@@ -131,6 +131,7 @@ function setVideopipEventHandler() {
     if(video_elements_list) {
       for (var i = 0; i < video_elements_list.length; i++) {
         video_elements_list[i].addEventListener('enterpictureinpicture', function(event) {
+            const pipWindow = event.pictureInPictureWindow;
             chrome.storage.local.set({ "togglePiP": true }, function () {
                 $("#btnPiP").prop("checked", true);
             });        
@@ -189,11 +190,6 @@ var initEvents = function (StretchView) {
 
     });
 
-    $(document).on('keydown', null, 'i', function (event) {
-        chrome.storage.local.set({ "togglePiP": $('#btnPiP').prop('checked')}, function () {});
-
-    });
-
     chrome.storage.onChanged.addListener(function (changes) {
         if ("extensionMode" in changes) {
             StretchView.setMode(changes.extensionMode.newValue);
@@ -202,6 +198,5 @@ var initEvents = function (StretchView) {
         StretchView.createCSS();
         StretchView.classCheck();
         setVideoAdjustments();
-
     });
 };

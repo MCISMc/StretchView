@@ -25,14 +25,14 @@ $(document).ready(function() {
 
     //add, add/remove class functionality to Class
     CssClasses.prototype.add = function() {
-       classes.webClasses.map((player) => {
+        classes.webClasses.map((player) => {
            $(player.selector).addClass(player.className);
-       })
+        })
     };
     CssClasses.prototype.remove = function() {
-       classes.webClasses.map((player) => {
+        classes.webClasses.map((player) => {
            $(player.selector).removeClass(player.className);
-       })
+        })
     };
 
     //Check if url is Youtube
