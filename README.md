@@ -25,10 +25,16 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ## CHANGE LOG
 
+4.3.10
+--------------------
+- Extension update notification has been removed
+- Picture-in-Picture Mode now has a new shortcut-key : "Shift+G"
+- Supported website logo's for hotlink has been set to autoload with extension installation
+
 v4.3.6
 --------------------
 - Picture-in-Picture Mode added ( re-sizable mini player, can be viewed outside of the Google Chrome™ ),
-- YouTube Uninterrupted Mode added ( Hides Suggested Video Overlay On YouTube Videos ),
+- YouTube Uninterrupted Mode added ( Hides suggested video overlay on YouTube videos ),
 - Added Support for following websites,
 - Twitch.tv, Facebook, Twitter, Instagram
 

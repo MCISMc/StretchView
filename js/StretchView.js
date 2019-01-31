@@ -131,7 +131,6 @@ function setVideopipEventHandler() {
     if(video_elements_list) {
       for (var i = 0; i < video_elements_list.length; i++) {
         video_elements_list[i].addEventListener('enterpictureinpicture', function(event) {
-            const pipWindow = event.pictureInPictureWindow;
             chrome.storage.local.set({ "togglePiP": true }, function () {
                 $("#btnPiP").prop("checked", true);
             });        
@@ -145,6 +144,8 @@ function setVideopipEventHandler() {
       }
     }    
 } 
+
+
 
 var initEvents = function (StretchView) {
 
@@ -189,6 +190,26 @@ var initEvents = function (StretchView) {
         });
 
     });
+
+    $(document).on('keydown', null, 'shift+g', function (event) {
+        chrome.storage.local.set({ "togglePiP": $(this).prop('checked')}, function () {});
+            var video_elements_list = document.getElementsByTagName("video");
+            if(video_elements_list) {
+              for (var i = 0; i < video_elements_list.length; i++) {
+                if(!video_elements_list[i].paused) {
+                    try {
+                      if (video_elements_list[i] !== document.pictureInPictureElement) {
+                        video_elements_list[i].requestPictureInPicture();
+                      } else { document.exitPictureInPicture(); }
+                    }
+                    catch(error) { console.log(error); }
+                    finally {}
+                }
+              }
+            }
+    });
+
+
 
     chrome.storage.onChanged.addListener(function (changes) {
         if ("extensionMode" in changes) {

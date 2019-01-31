@@ -21,10 +21,8 @@ $(document).ready(function () {
     if (NumberOfImagesCached == Object.keys(images_to_fetch).length) {
         loadImages(images_to_fetch);
     } else {
-        document.getElementById("loader").style.display = "block";
         fetchImages(images_to_fetch);
     }
-
     // IMAGES CHROME STORAGE END
 
     var isOn = -1;
@@ -46,9 +44,9 @@ $(document).ready(function () {
     });
     
     chrome.storage.local.get("togglePiP", function (results) {
-    $("#btnPiP").prop("checked", results.togglePiP);
-
+        $("#btnPiP").prop("checked", results.togglePiP);
     });
+
     $("#off").click(function () {
         $("#forceStretch").prop("checked", false);
         $("#forceAspect").prop("checked", false);
@@ -82,7 +80,7 @@ $(document).ready(function () {
                       } else { await document.exitPictureInPicture(); }
                     }
                     catch(error) { console.log(error); }
-                    finally { btntogglePiP.disabled = false;}
+                    finally {}
                 }
               }
             } 
@@ -94,9 +92,7 @@ $(document).ready(function () {
     $(".video_adjust_title").click(function () {
         $header = $(this);
         $content = $(".video_adjust_content");
-        $content.slideToggle(200, function () {
-            //execute this after slideToggle is done
-        });
+        $content.slideToggle(200, function () {});
     
     });
 
@@ -137,20 +133,18 @@ $(document).ready(function () {
             chrome.storage.local.set({ "contrast": $("#contrast_slider").val() }, function () {});
         });
 
-        // Update the current slider value (each time you drag the slider handle)
         $("#brightness_slider").on("change mousemove", function() {
             $('#brightness_slider_output').html($('#brightness_slider').val());
             chrome.storage.local.set({ "brightness": $("#brightness_slider").val() }, function () {});
         });
 
-        // Update the current slider value (each time you drag the slider handle)
         $("#saturation_slider").on("change mousemove", function() {
             $('#saturation_slider_output').html($('#saturation_slider').val());
             chrome.storage.local.set({ "saturation": $("#saturation_slider").val() }, function () {});
         });
 
     });
-    // Video Adjustment Slider Controller ENDS
+
 
 });
 
@@ -160,9 +154,7 @@ function loadImages(images_to_fetch) {
 
 function fetchImages(images_to_fetch) {
     Object.keys(images_to_fetch).forEach(ele => {
-        chrome.storage.local.set({ ele: "" }, function () {
-            //console.log('Blank Set for :' + ele);
-        });
+        chrome.storage.local.set({ ele: "" }, function () {});
     });
     recursiveFetch(images_to_fetch, 0);
 }
@@ -174,21 +166,19 @@ function recursiveLoad(images_to_fetch, index) {
         var link = images_to_fetch[key];
 
         var base64 = "";
-        var base64 = localStorage.getItem(key);
-      
-        // console.log(base64);
+        if(localStorage.getItem(key)){
+            base64 = localStorage.getItem(key);
+        } else {
+            base64 = "/images/loader.gif";
+        }
 
         var img_html_base64 = '<a href="http://www.' + key + '.com" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
 
         var brand_logos_dynamic = document.getElementById('brand_logos_dynamic');
-        brand_logos_dynamic.insertAdjacentHTML("beforeend", img_html_base64);
+        brand_logos_dynamic.innerHTML += img_html_base64;
 
-        index = index + 1;
-        recursiveLoad(images_to_fetch, index);
+        recursiveLoad(images_to_fetch, index + 1);
 
-    } else {
-        document.getElementById("loader").style.display = "none";
-        return;
     }
 }
 
@@ -229,22 +219,19 @@ function recursiveFetch(images_to_fetch, index) {
         XHR.addEventListener('load', function (event) {
          
             //console.log(XHR.responseXML.getElementById("ta_raw").value);
-            // e.html = XHR.responseXML.getElementById("ta_raw");
-            //var img_html_value = document.getElementById("ta_raw").value;
             var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
   
             localStorage.setItem(key, img_html_value);
             localStorage.setItem('NumberOfImagesCached', (index + 1));
 
-            // Clearing the div for better performance as it is now not needed
-            //e.html = "";
-
+            document.getElementById('brand_logos_dynamic').innerHTML = "";
+            recursiveLoad(images_to_fetch, 0);
             recursiveFetch(images_to_fetch, index + 1);
         });
 
         // Define what happens in case of error
         XHR.addEventListener('error', function (event) {
-            alert('Oops! Something goes wrong.');
+            console.log('Oops! Something goes wrong, FAILED TO LOAD IMAGES.');
         });
 
         // Set up our request
@@ -258,7 +245,5 @@ function recursiveFetch(images_to_fetch, index) {
         XHR.send(urlEncodedData);
 
         // Fetching process end
-    } else {
-        loadImages(images_to_fetch);
     }
 }

@@ -60,21 +60,11 @@
    "permissions": [
       "activeTab",
       "storage",
-      "notifications",
       "https://*.askapache.com/*",
       "http://*.askapache.com/*"
    ],
    "name": "StretchView",
    "short_name": "StretchView",
    "description": "Force stretch videos to remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode",
-   "version": "4.3.8",
-   "commands": {
-      "toggle-feature-foo": {
-         "suggested_key": {
-            "default": "Ctrl+B",
-            "mac": "Command+B"
-         },
-         "description": "Toggle PIP Picture-in-Picture"
-      }
-   }
+   "version": "4.3.10"
 }
