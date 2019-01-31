@@ -66,8 +66,8 @@
    ],
    "name": "StretchView",
    "short_name": "StretchView",
-   "description": "Force stretch videos to full screen display and remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode",
-   "version": "4.3.6",
+   "description": "Force stretch videos to remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode",
+   "version": "4.3.8",
    "commands": {
       "toggle-feature-foo": {
          "suggested_key": {
