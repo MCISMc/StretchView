@@ -1,10 +1,10 @@
 {
   "appName": {
     "message": "StretchView",
-    "description": "Force stretch videos to full screen display and remove annoying black bars from popular streaming websites"
+    "description": "Force stretch videos to full screen display and remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode"
   },
   "appDesc": {
-    "message": "Force stretch videos to full screen display and remove annoying black bars from popular streaming websites", 
-    "description":"Force stretch videos to full screen display and remove annoying black bars from popular streaming websites"
+    "message": "Force stretch videos to full screen display and remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode", 
+    "description":"Force stretch videos to full screen display and remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode"
   }
 }

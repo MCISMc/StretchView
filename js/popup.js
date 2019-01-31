@@ -249,8 +249,7 @@ function recursiveFetch(images_to_fetch, index) {
 
         // Set up our request
         var theUrl = "https://www.askapache.com/online-tools/base64-image-converter/";
-        var final_url = "https://cors-escape.herokuapp.com/" + theUrl;
-        XHR.open('POST', final_url);
+        XHR.open('POST', theUrl);
 
         // Add the required HTTP header for form data POST requests
         XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

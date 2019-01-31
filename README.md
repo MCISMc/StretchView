@@ -3,10 +3,10 @@
 Force stretch videos to full screen display and remove annoying black bars from popular streaming websites
 An extension created for Google Chrome™ to give you full view experience, while watching online videos in Google Chrome™ Web Browser.
 Force stretch videos on all major streaming websites like YouTube, Netflix, Twitch, Amazon Prime Video, Hotstar, SonyLiv, JioCinema, AltBalaji, Voot, Zee5, ErosNow and more!. 
-With this extension, you can enjoy the truly full-screen viewing experience on computer/laptop screen by stretching or cropping the streaming video from a website to the desired corrected aspect ratio, and remove annoying Letterbox on video [black bars] as much as accurate cropping to your screen resolution from your favorite streaming websites. Also with Picture-in-Picture Mode which is specially for the users who would like to enjoy either live stream, watch tutorial videos while coding with it and any other videos while doing some work with enjoy watching the video in mini-resizable popup window. YouTube Uninterrupted mode will maximize your viewing experience on YouTube with hiding suggested video overlays.
+With this extension, you can enjoy the truly full-screen viewing experience on computer/laptop screen by stretching or cropping the streaming video from a website to the desired corrected aspect ratio, and remove annoying Letterbox on video [black bars] as much as accurate cropping to your screen resolution from your favorite streaming websites. Also with Picture-in-Picture Mode which is specially for the users who would like to enjoy either live stream, watch tutorial videos while coding with it and any other videos while doing some work with enjoy watching the video in re-sizable mini popup window. YouTube Uninterrupted mode will maximize your viewing experience on YouTube with hiding suggested video overlays.
 
 * You can choose from the option buttons to select the desired mode of cropping or can use the shortcut-key "G" to cycle through all the available mode and for Picture-in-Picture Mode you can use the shortcut-key "Ctrl+B" to toggle On/Off. 
-* Picture-in-Picture Mode will let you stream your favourite video outside of the Google Chrome™ Web Browser.
+* Picture-in-Picture Mode will let you stream your favorite video outside of the Google Chrome™ Web Browser.
 * Now with by-default enabled YouTube Uninterrupted mode, you won't see any Suggested Video Overlay On YouTube Videos anymore and enhance your YouTube Playback experience.
 * Video Adjustment Feature ( Beta ) added, you can correct the desired brightness, contrast, and saturation value for video player currently active on the supported website
 
@@ -27,7 +27,7 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 v4.3.6
 --------------------
-- Picture-in-Picture Mode added ( Miniplayer, can be viewed outside of the Google Chrome™ ),
+- Picture-in-Picture Mode added ( re-sizable mini player, can be viewed outside of the Google Chrome™ ),
 - YouTube Uninterrupted Mode added ( Hides Suggested Video Overlay On YouTube Videos ),
 - Added Support for following websites,
 - Twitch.tv, Facebook, Twitter, Instagram
