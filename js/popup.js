@@ -1,4 +1,15 @@
 $(document).ready(function () {
+
+    //To work a href links in popup html START
+    $(document).ready(function () {
+        $('body').on('click', 'a', function () {
+            chrome.tabs.create({ url: $(this).attr('href') });
+            return false;
+        });
+    });
+    //To work a href links in popup html END
+
+
    
     // Image Link and its key name
     var images_to_fetch = {
