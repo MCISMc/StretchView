@@ -14,7 +14,8 @@
     
     <script src="../js/popup.js"></script>   
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/radio_btn/css/style.css">            
+    <link rel="stylesheet" href="../css/radio_btn/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -28,83 +29,66 @@
             <hr style="margin: 0.2rem 0 0.5rem 0;">
             <div class="jumbotron">
                 <center>
-                    <input class="radio_box" type="radio" id="off" name="radio_box" value="0" data-icon='OFF' data-toggle="tooltip" data-placement="bottom" title="Defaults"/>
-                    <input class="radio_box" type="radio" id="forceStretch" name="radio_box" value="1" data-icon='FullView' data-toggle="tooltip" data-placement="bottom" title="FullView video cropping and stretching"/>
-                    <input class="radio_box" type="radio" id="forceAspect" name="radio_box" value="2" data-icon='StretchView' data-toggle="tooltip" data-placement="bottom" title="Stretch video upto screen width"/>
-                    <input class="radio_box" type="checkbox" id="btnPiP" name="btnPiP" value="0" data-icon='PIP' data-toggle="tooltip" data-placement="auto" title="Picture-in-Picture Mode"/>
+                    <input class="radio_box" type="radio" id="off" name="radio_box" value="0" data-icon='OFF' data-toggle="tooltip" data-placement="bottom" title="Defaults" />
+                    <input class="radio_box" type="radio" id="forceStretch" name="radio_box" value="1" data-icon='FullView' data-toggle="tooltip" data-placement="bottom" title="FullView video cropping and stretching" />
+                    <input class="radio_box" type="radio" id="forceAspect" name="radio_box" value="2" data-icon='StretchView' data-toggle="tooltip" data-placement="bottom" title="Stretch video upto screen width" />
+                    <input class="radio_box" type="checkbox" id="btnPiP" name="btnPiP" value="0" data-icon='PIP' data-toggle="tooltip" data-placement="auto" title="Picture-in-Picture Mode" />
                 </center>
                 <hr style="margin: 0.9rem 0 0.2rem;">
-                <marquee style="font-family:'courier';" direction="scroll">Use keyboard shortcut-key "G" to toggle between above modes.</marquee>
+                <marquee style="font-family:'courier';" direction="scroll"> Use keyboard shortcut-key "G" to toggle between above modes, and for Picture-in-Picture Mode use keyboard shortcut-key "Shift+G". </marquee>
                 <hr style="margin: 0.2rem 0;">
                 <center>
-                  <div class="video_adjust_container">
-                    <span class="video_adjust_title" data-toggle="tooltip" data-html="true" data-placement="top" title="Video <em>Color Correction Tool.</em></br> ( Click to <b>SHOW / HIDE</b> )">Video Adjustments ( BETA )</span >
-                    <b  id="video_adjustments_reset" aria-hidden="true" style=" color: gray;" data-toggle="tooltip" data-placement="left" title="Reset video adjustments" style=" color: gray;float:right; font-weight: 1000;">X</b><i>&nbsp</i>
-                    <div class="video_adjust_content">
-                        <div style="clear: both;"></div>
-                        <hr style="margin: 0.2rem 0 0.5em 0;">
-                        <div style="clear: both;"></div> 
-                        <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="option_title">
-                                        Brightness :
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="1" max="200" value="100" class="custom-range" id="brightness_slider">
-                                    </div>
-                                </td>
-                                <td>
-                                    <span id="brightness_slider_output">100</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="option_title">
-                                        Contrast :
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="1" max="200" value="100" class="custom-range" id="contrast_slider">
-                                    </div>
-                                </td>
-                                <td>
-                                    <span id="contrast_slider_output">100</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="option_title">
-                                        Saturation :
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="1" max="200" value="100" class="custom-range" id="saturation_slider">
-                                    </div>
-                                </td>
-                                <td>
-                                    <span id="saturation_slider_output">100</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-					</div>
-                 </div>
+                    <div class="video_adjust_container">
+                        <span class="video_adjust_title" data-toggle="tooltip" data-html="true" data-placement="top" title="Video <em>Color Correction Tool.</em></br> ( Click to <b>SHOW / HIDE</b> )">Video Adjustments ( BETA )</span>
+                        <b id="video_adjustments_reset" aria-hidden="true" style=" color: gray;" data-toggle="tooltip" data-placement="left" title="Reset video adjustments" style=" color: gray;float:right; font-weight: 1000;">X</b><i>&nbsp</i>
+                        <div class="video_adjust_content">
+                            <div style="clear: both;"></div>
+                            <hr style="margin: 0.2rem 0 0.5em 0;">
+                            <div style="clear: both;"></div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><div class="option_title">Brightness :</div></td>
+                                        <td><div class="slidecontainer"><input type="range" min="1" max="200" value="100" class="custom-range" id="brightness_slider"></div></td>
+                                        <td><span id="brightness_slider_output">100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="option_title"></div></td>
+                                        <td><div class="slidecontainer"><input type="range" min="1" max="200" value="100" class="custom-range" id="contrast_slider"></div></td>
+                                        <td><span id="contrast_slider_output">100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="option_title">Saturation :</div></td>
+                                        <td><div class="slidecontainer"><input type="range" min="1" max="200" value="100" class="custom-range" id="saturation_slider"></div></td>
+                                        <td><span id="saturation_slider_output">100</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </center>
                 <hr style="margin: 0.2rem 0 0.2rem;">
                 <center id="brand_logos_dynamic">
                     <div class="loader" id="loader" style="display: none"></div>
                 </center>
-                <hr style="margin: 1rem 0 0.2rem;">
+                <hr style="margin: 1rem 0 0.2rem;" />
+                <h6 style="color:crimson;">Give Us Stars</h6>
+                <div class="all_stars">
+                    <a href="https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci">
+                        <i class="fas fa-star c_star"></i>
+                        <i class="fas fa-star c_star"></i>
+                        <i class="fas fa-star c_star"></i>
+                        <i class="fas fa-star c_star"></i>
+                        <i class="fas fa-star c_star"></i>
+                    </a>
+                </div>
+                <hr style="margin:1rem 0 0.2rem;" />
                 <h6>Created by <a href="https://github.com/MCISMc/" target="_blank">#MCISMc</a> and <a href="https://github.com/pishangujeniya/" target="_blank">Pishang Ujeniya</a></h6>
 
-                <p style="font-size:0.5em;">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the
-                    developers are of no responsibility in any case. Logos are copyright to their respective owners</p>
+                <p style="font-size:0.5em;">
+                    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the
+                    developers are of no responsibility in any case. Logos are copyright to their respective owners
+                </p>
             </div>
         </center>
     </div>

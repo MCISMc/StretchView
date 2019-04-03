@@ -1,0 +1,7 @@
+.ytp-ce-element.ytp-ce-element-show {
+    opacity: 0.01 !important;
+}
+
+.ytp-ce-element.ytp-ce-element-show:hover {
+    opacity: 1 !important;
+}
