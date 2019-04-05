@@ -1,3 +1,5 @@
+<p align="center"><img src="images/horizontal.png" alt="StretchView" height="120px"></p>
+
 # StretchView - Chrome Extension
 
 Force stretch videos to full screen display and remove annoying black bars from popular streaming websites
