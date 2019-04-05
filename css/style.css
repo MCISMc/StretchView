@@ -28,7 +28,7 @@ marquee {
 
 td{
     align-content: center;
-    padding: 0.5em;
+    padding: 0.3em;
 }
 
 .extension_title{
@@ -49,7 +49,8 @@ td{
     text-align: center;
     font-style: normal;
     margin: 5px 0px;
-    color: #0056b3 ;   
+    font-size: 17px;
+    color: #0056b3;
 }
 
 .video_adjust_container .video_adjust_content {
@@ -66,7 +67,7 @@ b#video_adjustments_reset {
 
 .option_title{
     text-align: center;
-    padding: 5px 10px;
+    padding: 1px 10px;
     font-weight: normal;
     font-style: italic;
 }
@@ -143,9 +144,20 @@ b#video_adjustments_reset {
 
 
 /* #region STARS CSS*/
-.c_star:hover{
+/*.c_star:hover{
     color:crimson;
+}*/
+
+.all_stars a {
+    unicode-bidi: bidi-override;
+    direction: rtl;
 }
+.all_stars a > span:hover:before,
+.all_stars a > span:hover ~ span:before {
+    color:gold;;
+}
+
+
 .all_stars a{
     cursor:pointer !important;
     color: inherit !important;

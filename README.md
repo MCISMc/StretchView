@@ -25,7 +25,12 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ## CHANGE LOG
 
-4.3.10
+v4.4.2
+--------------------
+- Link to Rate extension has been added
+- New Logo Design
+
+v4.3.10
 --------------------
 - Extension update notification has been removed
 - Picture-in-Picture Mode now has a new shortcut-key : "Shift+G"
@@ -38,7 +43,7 @@ v4.3.6
 - Added Support for following websites,
 - Twitch.tv, Facebook, Twitter, Instagram
 
-4.1
+v4.1
 --------------------
 - Logo has been updated to new design
 - StrechView Mode has been redesigned and renames to FullView Mode and StrechView Mode
@@ -74,6 +79,8 @@ v1.0
 ## Credits
 
 * Thanks to Morten Olsen for [this](http://codepen.io/mortenolsendk/pen/QbvBYy) awesome radio buttons.
+* Thanks to [Pishang Ujeniya](https://github.com/pishangujeniya) for actively participating to improve this extension .
+* Thanks to [ghostofiht](https://github.com/ghostofiht) for this new clean and simpler logo for extension.
 
 ## Acknowledgments
 
