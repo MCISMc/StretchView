@@ -1,4 +1,4 @@
-<p align="left"><img src="images/horizontal.png" alt="StretchView" height="120px"></p>
+<p align="center"><img src="images/horizontal.png" alt="StretchView" height="120px"></p>
 
 # StretchView - Chrome Extension
 
