@@ -24,7 +24,7 @@
         <center>
             <h4 class="extension_title">
                 <img style="float: left;" src="/images/logo-48.png" />
-                <div style="margin: 10px 0px;padding: 0  10px; color: #E03434">StretchView</div>
+                <div style="margin: 10px 0px;padding: 0  10px; color: #0056b3">StretchView</div>
             </h4>
             <hr style="margin: 0.2rem 0 0.5rem 0;">
             <div class="jumbotron">
@@ -40,7 +40,9 @@
                 <center>
                     <div class="video_adjust_container">
                         <span class="video_adjust_title" data-toggle="tooltip" data-html="true" data-placement="top" title="Video <em>Color Correction Tool.</em></br> ( Click to <b>SHOW / HIDE</b> )">Video Adjustments ( BETA )</span>
-                        <b id="video_adjustments_reset" aria-hidden="true" style=" color: gray;" data-toggle="tooltip" data-placement="left" title="Reset video adjustments" style=" color: gray;float:right; font-weight: 1000;">X</b><i>&nbsp</i>
+                        <button type="button" id="video_adjustments_reset" class="close" aria-label="Close" style=" color: gray;margin-right:20px;font-size: 22px;" data-toggle="tooltip" data-placement="left" title="Reset video adjustments">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         <div class="video_adjust_content">
                             <div style="clear: both;"></div>
                             <hr style="margin: 0.2rem 0 0.5em 0;">
@@ -53,7 +55,7 @@
                                         <td><span id="brightness_slider_output">100</span></td>
                                     </tr>
                                     <tr>
-                                        <td><div class="option_title"></div></td>
+                                        <td><div class="option_title">Contrast :</div></td>
                                         <td><div class="slidecontainer"><input type="range" min="1" max="200" value="100" class="custom-range" id="contrast_slider"></div></td>
                                         <td><span id="contrast_slider_output">100</span></td>
                                     </tr>
@@ -72,14 +74,14 @@
                     <div class="loader" id="loader" style="display: none"></div>
                 </center>
                 <hr style="margin: 1rem 0 0.2rem;" />
-                <h6 style="color:crimson;">Give Us Stars</h6>
+                <h6 style="color:#0056b3;">Rate this extension</h6>
                 <div class="all_stars">
                     <a href="https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci">
-                        <i class="fas fa-star c_star"></i>
-                        <i class="fas fa-star c_star"></i>
-                        <i class="fas fa-star c_star"></i>
-                        <i class="fas fa-star c_star"></i>
-                        <i class="fas fa-star c_star"></i>
+                        <span class="fas fa-star c_star"></span>
+                        <span class="fas fa-star c_star"></span>
+                        <span class="fas fa-star c_star"></span>
+                        <span class="fas fa-star c_star"></span>
+                        <span class="fas fa-star c_star"></span>
                     </a>
                 </div>
                 <hr style="margin:1rem 0 0.2rem;" />
