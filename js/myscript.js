@@ -14,8 +14,7 @@ $(document).ready(function() {
             { selector: ".bcPlayer_html5_api video", className: "extraClass" }, // Sony LIV 
 			{ selector: ".jw-video jw-reset", className: "extraClass" }, // JioCinema, ZEE5, EROS NOW
 			{ selector: ".playkit-engine playkit-engine-html5", className: "extraClass" }, // Voot
-			{ selector: ".xs-video xs-layer-bottom", className: "extraClass" }, // Alt Balaji
-            { selector: ".mhp1138_videoWrapper", className: "extraClass" } // Porn Hub
+			{ selector: ".xs-video xs-layer-bottom", className: "extraClass" } // Alt Balaji
 
         ];
     }

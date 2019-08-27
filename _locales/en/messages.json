@@ -1,10 +1,10 @@
 {
   "appName": {
     "message": "StretchView",
-    "description": "Force stretch videos to remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode"
+    "description": "Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features."
   },
   "appDesc": {
-    "message": "Force stretch videos to remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode", 
-    "description":"Force stretch videos to remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode"
+    "message": "Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features.", 
+    "description":"Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features."
   }
 }

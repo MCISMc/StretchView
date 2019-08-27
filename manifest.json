@@ -36,8 +36,7 @@
             "https://*.jiocinema.com/*",
             "https://*.facebook.com/*",
             "https://*.twitter.com/*",
-            "https://*.instagram.com/*",
-            "https://*.pornhub.com/*"
+            "https://*.instagram.com/*"
          ],
          "run_at": "document_start"
       },
@@ -65,6 +64,6 @@
    ],
    "name": "StretchView",
    "short_name": "StretchView",
-   "description": "Force stretch videos to remove annoying black bars, Picture-in-Picture Mode Support and also with YouTube Uninterrupted mode",
-   "version": "4.4.2"
+   "description": "Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features.",
+   "version": "4.5"
 }
