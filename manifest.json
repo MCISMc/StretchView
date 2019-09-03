@@ -39,13 +39,7 @@
             "https://*.instagram.com/*"
          ],
          "run_at": "document_start"
-      },
-      
-      {
-         "css": ["css/youtubeFix.css"],
-         "matches": [ "https://*.youtube.com/*" ],
-         "run_at": "document_start"
-      }      
+      }     
    ],
    "icons": {
       "16": "images/logo-48.png",
