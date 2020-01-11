@@ -22,9 +22,8 @@ $(document).ready(function () {
         "sonyliv": "https://images.justwatch.com/icon/99832956/s100/sony-liv",
         "zee5": "https://images.justwatch.com/icon/93795879/s100/zee5",
         "voot": "https://images.justwatch.com/icon/4233119/s100/voot",
-        "erosnow": "https://images.justwatch.com/icon/82869265/s100/eros-now",
+        "airtelxstream": "https://www.apkmirror.com/wp-content/uploads/2019/10/5da89d0807d41.png"
     }
-
     // IMAGES CHROME STORAGE START
 
     var NumberOfImagesCached = localStorage.getItem('NumberOfImagesCached');

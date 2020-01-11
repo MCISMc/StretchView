@@ -1,10 +1,10 @@
 {
-  "appName": {
-    "message": "StretchView",
-    "description": "Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features."
-  },
-  "appDesc": {
-    "message": "Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features.", 
-    "description":"Stretch videos to remove annoying black bars, Picture-in-Picture Mode and video color adjustment features."
-  }
+   "appDesc": {
+      "description": "Remove annoying black bars from video",
+      "message": "Remove annoying black bars from video"
+   },
+   "appName": {
+      "description": "Remove annoying black bars from video",
+      "message": "StretchView"
+   }
 }

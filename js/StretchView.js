@@ -59,7 +59,21 @@ function StretchView() {
             this.scaleX = 1.39;
             this.scale = 1;
         }
+
     };
+
+    //Check if url is AirtelXstream
+    this.fixScale = function () {
+        if(window.location.href.indexOf("www.airtelxstream.in") > 0) {
+            this.scaleX = 1.343;
+            this.scale = 1.33;
+        }
+    };
+
+
+
+
+
 
     this.fullscreenSet = function (cb) {
         setTimeout((function () {
@@ -102,6 +116,7 @@ $(document).ready(function () {
     chrome.storage.local.get("extensionMode", function (status) {
         StretchView.setMode(status.extensionMode);
         StretchView.setScale();
+        StretchView.fixScale();
         StretchView.fullscreenSet();
         StretchView.createCSS();
         initEvents(StretchView);
@@ -151,6 +166,7 @@ var initEvents = function (StretchView) {
 
     $(window).resize(function () {
         StretchView.setScale();
+        StretchView.fixScale();
         StretchView.fullscreenSet();
         StretchView.createCSS();
     });
@@ -159,12 +175,7 @@ var initEvents = function (StretchView) {
         var state = StretchView.mode;
 
         if (state < 2) {
-            if (this.fullscreen == true && state == 1) {
-                state = StretchView.setMode(0);
-            } else {
-                state = StretchView.setMode(StretchView.mode + 1);
-            }
-
+            state = StretchView.setMode(StretchView.mode + 1);
         } else {
             state = StretchView.setMode(0);
         }
@@ -216,6 +227,7 @@ var initEvents = function (StretchView) {
             StretchView.setMode(changes.extensionMode.newValue);
         }
         StretchView.setScale();
+        StretchView.fixScale();
         StretchView.createCSS();
         StretchView.classCheck();
         setVideoAdjustments();

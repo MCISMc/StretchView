@@ -13,7 +13,8 @@ $(document).ready(function() {
 			{ selector: "#vid_html5_api", className: "extraClass" }, // Hotstar, HBO GO
             { selector: ".bcPlayer_html5_api video", className: "extraClass" }, // Sony LIV 
 			{ selector: ".jw-video jw-reset", className: "extraClass" }, // JioCinema, ZEE5, EROS NOW
-			{ selector: ".playkit-engine playkit-engine-html5", className: "extraClass" }, // Voot
+            { selector: ".playkit-engine playkit-engine-html5", className: "extraClass" }, // Voot
+            { selector: ".vjs-tech", className: "extraClass" }, // AirtelXstream 
 			{ selector: ".xs-video xs-layer-bottom", className: "extraClass" } // Alt Balaji
 
         ];
