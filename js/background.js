@@ -82,7 +82,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
         "sonyliv": "https://images.justwatch.com/icon/99832956/s100/sony-liv",
         "zee5": "https://images.justwatch.com/icon/93795879/s100/zee5",
         "voot": "https://images.justwatch.com/icon/4233119/s100/voot",
-        "erosnow": "https://images.justwatch.com/icon/82869265/s100/eros-now",
+        "airtelxstream": "https://lh3.googleusercontent.com/GixZgG5tr3hZ9ppKeGmeqqhqw6cJX-OlND8D6U4eT1KW9Ba8ThP_mfyMSo5qGfLvROw=s180-rw",
     }
 
     chrome.storage.local.set({ "togglePiP": false }, function () {});

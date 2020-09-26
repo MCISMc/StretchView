@@ -17,12 +17,12 @@ $(document).ready(function () {
         "netflix": "https://images.justwatch.com/icon/430997/s100/netflix",
         "youtube": "https://images.justwatch.com/icon/59562423/s100/youtube",
         "jiocinema": "https://images.justwatch.com/icon/85114140/s100/jio-cinema",
-        "altbalaji": "https://upload.wikimedia.org/wikipedia/en/3/3f/ALT_Balaji_Logo.png",
+        "altbalaji": "https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg",
         "hotstar": "https://images.justwatch.com/icon/4233120/s100/hotstar",
         "sonyliv": "https://images.justwatch.com/icon/99832956/s100/sony-liv",
         "zee5": "https://images.justwatch.com/icon/93795879/s100/zee5",
         "voot": "https://images.justwatch.com/icon/4233119/s100/voot",
-        "airtelxstream": "https://www.apkmirror.com/wp-content/uploads/2019/10/5da89d0807d41.png"
+        "airtelxstream": "https://lh3.googleusercontent.com/GixZgG5tr3hZ9ppKeGmeqqhqw6cJX-OlND8D6U4eT1KW9Ba8ThP_mfyMSo5qGfLvROw=s180-rw"
     }
     // IMAGES CHROME STORAGE START
 
