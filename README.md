@@ -27,6 +27,9 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ## CHANGE LOG
 
+v5.3
+--------------------
+- Fixed the issue with loading logos
 
 v5.2
 --------------------
