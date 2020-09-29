@@ -37,7 +37,8 @@
             "https://*.facebook.com/*",
             "https://*.twitter.com/*",
             "https://*.instagram.com/*",
-            "https://*.airtelxstream.in/*"
+            "https://*.airtelxstream.in/*",
+			"https://*.mxplayer.in/*"
          ],
          "run_at": "document_start"
       },

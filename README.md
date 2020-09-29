@@ -31,22 +31,8 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 <img src="https://www.apkmirror.com/wp-content/uploads/2019/10/5da89d0807d41.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://d1nxzqpcg2bym0.cloudfront.net/itunes_connect/1067316596/9e8676ba-faae-11ea-958e-5db1cd97bea7/128x128" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images-eu.ssl-images-amazon.com/images/I/515%2BF2vlqtL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://cdn4.iconfinder.com/data/icons/social-media-square-4/1024/square-11-128.png" height="50px">
-
-### Works with
-
-<img src="https://images.justwatch.com/icon/52449861/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/207360008/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/59562423/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/85114140/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/174849096/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/207468084/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/93795879/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/82869265/s100/eros-now" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://www.apkmirror.com/wp-content/uploads/2019/10/5da89d0807d41.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Twitch_logo.svg/120px-Twitch_logo.svg.png" height="50px">
 
 
 ## TO DO
@@ -54,9 +40,10 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ## CHANGE LOG
 
-v5.4
+v5.4.3
 --------------------
 - Dark Mode Added
+- Added Support for MXPlayer.in
 
 v5.3
 --------------------

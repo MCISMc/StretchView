@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //global variables
     var isEnabled = -1;
@@ -10,12 +10,12 @@ $(document).ready(function() {
             { selector: ".video-stream.html5-main-video", className: "youtubeExtraClass" }, // YT
             { selector: ".video-container div video", className: "extraClass" }, // Netflix
             { selector: ".rendererContainer video", className: "extraClass" }, // Amazon Prime Video
-			{ selector: "#vid_html5_api", className: "extraClass" }, // Hotstar, HBO GO
+            { selector: "#vid_html5_api", className: "extraClass" }, // Hotstar, HBO GO
             { selector: ".bcPlayer_html5_api video", className: "extraClass" }, // Sony LIV 
-			{ selector: ".jw-video jw-reset", className: "extraClass" }, // JioCinema, ZEE5, EROS NOW
+            { selector: ".jw-video jw-reset", className: "extraClass" }, // JioCinema, ZEE5, EROS NOW
             { selector: ".playkit-engine playkit-engine-html5", className: "extraClass" }, // Voot
-            { selector: ".vjs-tech", className: "extraClass" }, // AirtelXstream 
-			{ selector: ".xs-video xs-layer-bottom", className: "extraClass" } // Alt Balaji
+            { selector: ".vjs-tech", className: "extraClass" }, // AirtelXstream , MX Player
+            { selector: ".xs-video xs-layer-bottom", className: "extraClass" } // Alt Balaji
 
         ];
     }
@@ -24,36 +24,36 @@ $(document).ready(function() {
     var classes = new CssClasses();
 
     //add, add/remove class functionality to Class
-    CssClasses.prototype.add = function() {
+    CssClasses.prototype.add = function () {
         classes.webClasses.map((player) => {
-           $(player.selector).addClass(player.className);
+            $(player.selector).addClass(player.className);
         })
     };
-    CssClasses.prototype.remove = function() {
+    CssClasses.prototype.remove = function () {
         classes.webClasses.map((player) => {
-           $(player.selector).removeClass(player.className);
+            $(player.selector).removeClass(player.className);
         })
     };
 
     //Check if url is Youtube
     function youtubeCheck() {
-        if(window.location.href.indexOf("www.youtube.com") > 0) {
+        if (window.location.href.indexOf("www.youtube.com") > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     //Kotkey event functionality
     function initKeyboardEvent() {
-        $(document).on('keydown', null, 'g',function(event) {
+        $(document).on('keydown', null, 'g', function (event) {
             console.log(event);
-            if(isEnabled === true) {
-                chrome.storage.local.set({"extensionIsEnabled":false},function (){
+            if (isEnabled === true) {
+                chrome.storage.local.set({ "extensionIsEnabled": false }, function () {
                     isEnabled = false;
                 });
-            }else if(isEnabled === false){
-                chrome.storage.local.set({"extensionIsEnabled":true},function (){
+            } else if (isEnabled === false) {
+                chrome.storage.local.set({ "extensionIsEnabled": true }, function () {
                     isEnabled = true;
                 });
             }
@@ -62,15 +62,15 @@ $(document).ready(function() {
 
     //set or delete youtube timer
     function setYoutubeTimer(isNowEnabled) {
-        if(isNowEnabled) {
-            timer = setInterval(function(){
+        if (isNowEnabled) {
+            timer = setInterval(function () {
                 if (document.webkitCurrentFullScreenElement != null) {
                     classes.add();
-                }else{
+                } else {
                     classes.remove();
                 }
             }, 100);
-        }else{
+        } else {
             clearInterval(timer);
             classes.remove();
         }
@@ -79,18 +79,18 @@ $(document).ready(function() {
 
     //Listen for 'enabled' state change
     function initOnchangeEvent() {
-        chrome.storage.onChanged.addListener(function(changes){
+        chrome.storage.onChanged.addListener(function (changes) {
             var isNowEnabled = changes.extensionIsEnabled.newValue;
-            if(isNowEnabled === true) {
-                if(youtubeCheck()) {
+            if (isNowEnabled === true) {
+                if (youtubeCheck()) {
                     setYoutubeTimer(isNowEnabled);
-                }else{
+                } else {
                     classes.add();
                 }
-            }else{
-                if(youtubeCheck()) {
+            } else {
+                if (youtubeCheck()) {
                     setYoutubeTimer(isNowEnabled);
-                }else{
+                } else {
                     classes.remove();
                 }
             }
@@ -99,16 +99,16 @@ $(document).ready(function() {
 
     //Get current 'enabled' state from chrome
     (function initData() {
-        chrome.storage.local.get("extensionIsEnabled",function (status){
+        chrome.storage.local.get("extensionIsEnabled", function (status) {
             isEnabled = status.extensionIsEnabled;
             initKeyboardEvent();
             initOnchangeEvent();
-            if(youtubeCheck()) {
+            if (youtubeCheck()) {
                 setYoutubeTimer(isEnabled);
-            }else{
-                if(isEnabled === true) {
+            } else {
+                if (isEnabled === true) {
                     classes.add();
-                }else{
+                } else {
                     classes.remove();
                 }
             }
