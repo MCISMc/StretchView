@@ -20,6 +20,21 @@ Feel free to tell me any things you like or dislike as well as graphical changes
 
 ### Works with
 
+<img src="https://www.iconfinder.com/data/icons/2018-social-media-app-logos/1000/2018_social_media_popular_app_logo_youtube-128.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images-eu.ssl-images-amazon.com/images/I/41mpv9rBhmL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images.justwatch.com/icon/207360008/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images.justwatch.com/icon/174849096/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images.justwatch.com/icon/207468084/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images.justwatch.com/icon/93795879/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://lh3.googleusercontent.com/SMlVlmn--w2tTPtk6kL2Y6vTgXhuO-sqi2Yzr9WzljMdBX5AER9OAnnwXv_vWkaA4A=s180-rw" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://www.apkmirror.com/wp-content/uploads/2019/10/5da89d0807d41.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://d1nxzqpcg2bym0.cloudfront.net/itunes_connect/1067316596/9e8676ba-faae-11ea-958e-5db1cd97bea7/128x128" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://cdn4.iconfinder.com/data/icons/social-media-square-4/1024/square-11-128.png" height="50px">
+
+### Works with
+
 <img src="https://images.justwatch.com/icon/52449861/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://images.justwatch.com/icon/207360008/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://images.justwatch.com/icon/59562423/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
