@@ -1,6 +1,12 @@
 body {
     min-width:340px;
+	background-color: currentcolor;
 }
+
+p, h6 {
+  color: slategray;
+}
+
 
 .youtubeExtraClass {
     height: 133.9%!important;
@@ -50,7 +56,7 @@ td{
     font-style: normal;
     margin: 5px 0px;
     font-size: 17px;
-    color: #0056b3;
+    color: white;
 }
 
 .video_adjust_container .video_adjust_content {
@@ -70,6 +76,8 @@ b#video_adjustments_reset {
     padding: 1px 10px;
     font-weight: normal;
     font-style: italic;
+    color: darkgrey;
+
 }
 
 .brand_logo{
@@ -77,7 +85,7 @@ b#video_adjustments_reset {
     max-width: 150px;
     position: relative;
     margin: 5px;
-
+    border-radius: 20%;
 }
 
 .radio_box{
@@ -89,11 +97,12 @@ b#video_adjustments_reset {
     padding: 0.1rem 0.1rem !important;
     margin-bottom: 0.1rem !important;
     border-radius: .3rem !important;
-    background-color: #fff !important;
+	background-color: currentcolor !important;
 }
 
 .container {
     padding: 0 1px !important;
+	background-color: currentcolor;
 }
 
 .slidecontainer {
@@ -142,7 +151,6 @@ b#video_adjustments_reset {
     animation: spin 2s linear infinite;
 }
 
-
 /* #region STARS CSS*/
 /*.c_star:hover{
     color:crimson;
@@ -160,7 +168,7 @@ b#video_adjustments_reset {
 
 .all_stars a{
     cursor:pointer !important;
-    color: inherit !important;
+    color: slategray; !important;
     text-decoration:none !important;
 }
 /* #endregion STARS CSS*/

@@ -10,24 +10,24 @@ $(document).ready(function () {
     //To work a href links in popup html END
 
 
-   
+
     // Image Link and its key name
     var images_to_fetch = {
-        "primevideo": "https://images.justwatch.com/icon/52449861/s100/amazon-prime-video",
-        "netflix": "https://images.justwatch.com/icon/430997/s100/netflix",
-        "youtube": "https://images.justwatch.com/icon/59562423/s100/youtube",
-        "jiocinema": "https://images.justwatch.com/icon/85114140/s100/jio-cinema",
+        "primevideo": "https://images.justwatch.com/icon/52449861/s100",
+        "netflix": "https://images.justwatch.com/icon/207360008/s100",
+        "youtube": "https://images.justwatch.com/icon/59562423/s100",
+        "jiocinema": "https://images.justwatch.com/icon/85114140/s100",
         "altbalaji": "https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg",
-        "hotstar": "https://images.justwatch.com/icon/4233120/s100/hotstar",
-        "sonyliv": "https://images.justwatch.com/icon/99832956/s100/sony-liv",
-        "zee5": "https://images.justwatch.com/icon/93795879/s100/zee5",
-        "voot": "https://images.justwatch.com/icon/4233119/s100/voot",
+        "hotstar": "https://images.justwatch.com/icon/174849096/s100",
+        "sonyliv": "https://images.justwatch.com/icon/207468084/s100",
+        "zee5": "https://images.justwatch.com/icon/93795879/s100",
+        "voot": "https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png",
         "airtelxstream": "https://lh3.googleusercontent.com/GixZgG5tr3hZ9ppKeGmeqqhqw6cJX-OlND8D6U4eT1KW9Ba8ThP_mfyMSo5qGfLvROw=s180-rw"
     }
     // IMAGES CHROME STORAGE START
 
     var NumberOfImagesCached = localStorage.getItem('NumberOfImagesCached');
-    
+
     if (NumberOfImagesCached == Object.keys(images_to_fetch).length) {
         loadImages(images_to_fetch);
     } else {
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 break;
         }
     });
-    
+
     chrome.storage.local.get("togglePiP", function (results) {
         $("#btnPiP").prop("checked", results.togglePiP);
     });
@@ -78,7 +78,7 @@ $(document).ready(function () {
     });
 
     $("#btnPiP").on('change', function () {
-        chrome.storage.local.set({ "togglePiP": $(this).prop('checked')}, function () {});
+        chrome.storage.local.set({ "togglePiP": $(this).prop('checked') }, function () { });
         const code = `(async () => {
             var video_elements_list = document.getElementsByTagName("video");
             if(video_elements_list) {
@@ -102,8 +102,8 @@ $(document).ready(function () {
     $(".video_adjust_title").click(function () {
         $header = $(this);
         $content = $(".video_adjust_content");
-        $content.slideToggle(200, function () {});
-    
+        $content.slideToggle(200, function () { });
+
     });
 
     $('[data-toggle="tooltip"]').tooltip({
@@ -111,9 +111,9 @@ $(document).ready(function () {
     });
 
     $("#video_adjustments_reset").click(function () {
-        chrome.storage.local.set({ "contrast": 100}, function () {});
-        chrome.storage.local.set({ "brightness": 100 }, function () {});
-        chrome.storage.local.set({ "saturation": 100 }, function () {});
+        chrome.storage.local.set({ "contrast": 100 }, function () { });
+        chrome.storage.local.set({ "brightness": 100 }, function () { });
+        chrome.storage.local.set({ "saturation": 100 }, function () { });
 
         $("#brightness_slider").val(100);
         $("#contrast_slider").val(100);
@@ -128,29 +128,29 @@ $(document).ready(function () {
     // Video Adjustment Slider Controller STARTS
     chrome.storage.local.get(["brightness", "contrast", "saturation"], function (results) {
         //console.log(results);
-        
+
         $("#brightness_slider").val(results.brightness);
-        $("#contrast_slider").val(results.contrast); 
+        $("#contrast_slider").val(results.contrast);
         $("#saturation_slider").val(results.saturation);
- 
+
         $('#brightness_slider_output').html($('#brightness_slider').val());
         $('#contrast_slider_output').html($('#contrast_slider').val());
         $('#saturation_slider_output').html($('#saturation_slider').val());
 
         // Update the current slider value (each time you drag the slider handle)
-        $("#contrast_slider").on("change mousemove", function() {
+        $("#contrast_slider").on("change mousemove", function () {
             $('#contrast_slider_output').html($('#contrast_slider').val());
-            chrome.storage.local.set({ "contrast": $("#contrast_slider").val() }, function () {});
+            chrome.storage.local.set({ "contrast": $("#contrast_slider").val() }, function () { });
         });
 
-        $("#brightness_slider").on("change mousemove", function() {
+        $("#brightness_slider").on("change mousemove", function () {
             $('#brightness_slider_output').html($('#brightness_slider').val());
-            chrome.storage.local.set({ "brightness": $("#brightness_slider").val() }, function () {});
+            chrome.storage.local.set({ "brightness": $("#brightness_slider").val() }, function () { });
         });
 
-        $("#saturation_slider").on("change mousemove", function() {
+        $("#saturation_slider").on("change mousemove", function () {
             $('#saturation_slider_output').html($('#saturation_slider').val());
-            chrome.storage.local.set({ "saturation": $("#saturation_slider").val() }, function () {});
+            chrome.storage.local.set({ "saturation": $("#saturation_slider").val() }, function () { });
         });
 
     });
@@ -164,7 +164,7 @@ function loadImages(images_to_fetch) {
 
 function fetchImages(images_to_fetch) {
     Object.keys(images_to_fetch).forEach(ele => {
-        chrome.storage.local.set({ ele: "" }, function () {});
+        chrome.storage.local.set({ ele: "" }, function () { });
     });
     recursiveFetch(images_to_fetch, 0);
 }
@@ -176,13 +176,13 @@ function recursiveLoad(images_to_fetch, index) {
         var link = images_to_fetch[key];
 
         var base64 = "";
-        if(localStorage.getItem(key)){
+        if (localStorage.getItem(key)) {
             base64 = localStorage.getItem(key);
         } else {
             base64 = "/images/loader.gif";
         }
 
-        var img_html_base64 = '<a href="http://www.' + key + '.com" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
+        var img_html_base64 = '<a href="http://www.' + key + '.com" class="sites-icon" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
 
         var brand_logos_dynamic = document.getElementById('brand_logos_dynamic');
         brand_logos_dynamic.innerHTML += img_html_base64;
@@ -227,10 +227,10 @@ function recursiveFetch(images_to_fetch, index) {
 
         // Define what happens on successful data submission
         XHR.addEventListener('load', function (event) {
-         
+
             //console.log(XHR.responseXML.getElementById("ta_raw").value);
             var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
-  
+
             localStorage.setItem(key, img_html_value);
             localStorage.setItem('NumberOfImagesCached', (index + 1));
 
