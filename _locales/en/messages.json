@@ -1,10 +1,38 @@
 {
    "appDesc": {
-      "description": "Remove annoying black bars from video",
-      "message": "Remove annoying black bars from video"
+      "description": "Description shown in Chrome Web Store and extension details",
+      "message": "StretchView - Ultimate Video Aspect Ratio Controller & Picture-in-Picture Tool. Remove black bars from streaming videos on Netflix, YouTube, Prime Video & more!"
    },
    "appName": {
-      "description": "Remove annoying black bars from video",
+      "description": "Name of the extension shown in Chrome Web Store",
       "message": "StretchView"
+   },
+   "appShortName": {
+      "description": "Short name for extension",
+      "message": "StretchView"
+   },
+   "btnFullView": {
+      "message": "FullView"
+   },
+   "btnStretchView": {
+      "message": "StretchView"
+   },
+   "btnPiP": {
+      "message": "PiP Mode"
+   },
+   "videoAdjustments": {
+      "message": "Video Adjustments"
+   },
+   "brightness": {
+      "message": "Brightness"
+   },
+   "contrast": {
+      "message": "Contrast"
+   },
+   "saturation": {
+      "message": "Saturation"
+   },
+   "reset": {
+      "message": "Reset"
    }
 }

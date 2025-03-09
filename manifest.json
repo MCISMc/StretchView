@@ -1,13 +1,11 @@
 {
    "background": {
-      "scripts": [
-         "js/background.js"
-      ]
+      "service_worker": "js/background.js"
    },
-   "browser_action": {
+   "action": {
       "default_icon": {
          "128": "images/logo-128.png",
-         "16": "images/logo-48.png",
+         "16": "images/logo-32.png",
          "32": "images/logo-32.png",
          "48": "images/logo-48.png"
       },
@@ -17,9 +15,9 @@
    "content_scripts": [
       {
          "js": [
-            "Jquery/jquery-2.1.3.min.js",
-            "Jquery/jquery.hotkeys.js",
-            "Jquery/jquery.fullscreen.js",
+            "js/jquery/fullscreen/jquery.fullscreen.js",
+            "js/jquery/hotkeys/jquery.hotkeys.js",
+            "js/jquery/jquery-2.1.3/jquery-2.1.3.min.js",
             "js/StretchView.js"
          ],
          "matches": [
@@ -41,35 +39,25 @@
             "https://*.mxplayer.in/*"
          ],
          "run_at": "document_start"
-      },
-      {
-         "css": [
-            "css/ytfix.css"
-         ],
-         "matches": [
-            "https://*.youtube.com/*"
-         ],
-         "run_at": "document_start"
       }
    ],
    "default_locale": "en",
-   "description": "Remove annoying black bars from video",
+   "description": "StretchView - Ultimate Video Aspect Ratio Controller & Picture-in-Picture Tool. Remove black bars from streaming videos on Netflix, YouTube, Prime Video & more. Features include:\n• Intelligent video stretching to fill your screen\n• Smart aspect ratio correction\n• Picture-in-Picture (PiP) mode with hotkey support\n• Video enhancement controls (brightness, contrast, saturation)\n• Works on major streaming platforms including Netflix, YouTube, Prime Video, Hotstar, SonyLIV, Zee5 & more\n• Keyboard shortcuts for quick control\n• No ads, no tracking, 100% privacy focused",
    "icons": {
       "128": "images/logo-128.png",
-      "16": "images/logo-48.png",
+      "16": "images/logo-32.png",
       "32": "images/logo-32.png",
       "48": "images/logo-48.png"
    },
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjSGL7WxDyJSpU3TPpaWTqdaahgXe2bsh3AEtRw/+quHLHc9gupSAdWeHogiuOh0gxAs7RFitlyYNdgkNkE4O3fxJifuz1s0tu904xFBkOA7TPFk12hR7zPivrlnI6NxmTuKU1KSMFd08lGL6sg5vjTsSWnq31sCTFaKewH8wXT52p6p/qI8DCkUVQz6mk0iVYGbmV23iXYxySd8Hecg2Eb+nLi37rcxiokDExEn+hE636vuro9AF0K4m/H96UUcNPqNCL64T3vW32mLdNUjMm/pNFTCZDQscVtq/aZNEtLNE+104l7rL+imJc5oeXHHIIoqpJEWhgmqehayErZaT9wIDAQAB",
-   "manifest_version": 2,
+   "manifest_version": 3,
    "name": "StretchView",
    "permissions": [
       "activeTab",
       "storage",
-      "https://*.askapache.com/*",
-      "http://*.askapache.com/*"
+      "scripting"
    ],
    "short_name": "StretchView",
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "5.4.3"
+   "version": "6.0.0"
 }

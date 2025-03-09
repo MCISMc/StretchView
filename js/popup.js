@@ -1,113 +1,66 @@
 $(document).ready(function () {
+    // Define supported sites
+    const supported_sites = {
+        "primevideo": "Prime Video",
+        "netflix": "Netflix",
+        "youtube": "YouTube",
+        "jiocinema": "Jio Cinema",
+        "altbalaji": "Alt Balaji",
+        "hotstar": "Hotstar",
+        "sonyliv": "Sony Liv",
+        "zee5": "Zee5",
+        "voot": "Voot",
+        "airtelxstream": "Airtel Xstream"
+    };
 
-    //To work a href links in popup html START
-    $(document).ready(function () {
-        $('body').on('click', 'a', function () {
-            chrome.tabs.create({ url: $(this).attr('href') });
-            return false;
-        });
-    });
-    //To work a href links in popup html END
+    // Load site names immediately
+    loadSiteNames(supported_sites);
 
-
-
-    // Image Link and its key name
-    var images_to_fetch = {
-        "primevideo": "https://images.justwatch.com/icon/52449861/s100",
-        "netflix": "https://images.justwatch.com/icon/207360008/s100",
-        "youtube": "https://images.justwatch.com/icon/59562423/s100",
-        "jiocinema": "https://images.justwatch.com/icon/85114140/s100",
-        "altbalaji": "https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg",
-        "hotstar": "https://images.justwatch.com/icon/174849096/s100",
-        "sonyliv": "https://images.justwatch.com/icon/207468084/s100",
-        "zee5": "https://images.justwatch.com/icon/93795879/s100",
-        "voot": "https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png",
-        "airtelxstream": "https://lh3.googleusercontent.com/GixZgG5tr3hZ9ppKeGmeqqhqw6cJX-OlND8D6U4eT1KW9Ba8ThP_mfyMSo5qGfLvROw=s180-rw"
-    }
-    // IMAGES CHROME STORAGE START
-
-    var NumberOfImagesCached = localStorage.getItem('NumberOfImagesCached');
-
-    if (NumberOfImagesCached == Object.keys(images_to_fetch).length) {
-        loadImages(images_to_fetch);
-    } else {
-        fetchImages(images_to_fetch);
-    }
-    // IMAGES CHROME STORAGE END
-
-    var isOn = -1;
-    chrome.storage.local.get("extensionMode", function (results) {
-        var mode = results.extensionMode;
-        switch (mode) {
-            // 0: off; 1: stretch; 2: fix-aspect-ratio;
+    // Update initial states
+    chrome.storage.local.get(["extensionMode", "togglePiP"], function (results) {
+        // Set initial states based on storage
+        switch (results.extensionMode) {
             case 1:
-                $("#forceStretch").prop("checked", true);
+                $("#forceStretch").addClass("active");
                 break;
             case 2:
-                $("#forceAspect").prop("checked", true);
+                $("#forceAspect").addClass("active");
                 break;
-            case 0:
-            default:
-                $("#off").prop("checked", true);
-                break;
+        }
+        
+        if (results.togglePiP) {
+            $("#btnPiP").addClass('active');
         }
     });
 
-    chrome.storage.local.get("togglePiP", function (results) {
-        $("#btnPiP").prop("checked", results.togglePiP);
-    });
+    function togglePiP(enterPiP) {
+        (async () => {
+            try {
+                const videos = document.getElementsByTagName("video");
+                if (!videos.length) return;
 
-    $("#off").click(function () {
-        $("#forceStretch").prop("checked", false);
-        $("#forceAspect").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 0 }, function () {
-        });
-    });
+                const video = Array.from(videos).find(v => !v.paused) || videos[0];
 
-    $("#forceStretch").click(function () {
-        $("#off").prop("checked", false);
-        $("#forceAspect").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 1 }, function () {
-        });
-    });
-    $("#forceAspect").click(function () {
-        $("#off").prop("checked", false);
-        $("#forceStretch").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 2 }, function () {
-        });
-    });
-
-    $("#btnPiP").on('change', function () {
-        chrome.storage.local.set({ "togglePiP": $(this).prop('checked') }, function () { });
-        const code = `(async () => {
-            var video_elements_list = document.getElementsByTagName("video");
-            if(video_elements_list) {
-              for (var i = 0; i < video_elements_list.length; i++) {
-                if(!video_elements_list[i].paused) {
-                    try {
-                      if (video_elements_list[i] !== document.pictureInPictureElement) {
-                        await video_elements_list[i].requestPictureInPicture();
-                      } else { await document.exitPictureInPicture(); }
+                if (enterPiP) {
+                    if (document.pictureInPictureElement !== video) {
+                        await video.requestPictureInPicture();
                     }
-                    catch(error) { console.log(error); }
-                    finally {}
+                } else {
+                    if (document.pictureInPictureElement) {
+                        await document.exitPictureInPicture();
+                    }
                 }
-              }
-            } 
-        })()`;
-        chrome.tabs.executeScript({ code, allFrames: true });
-
-    });
+            } catch (error) {
+                console.log('PiP error:', error);
+            }
+        })();
+    }
 
     $(".video_adjust_title").click(function () {
         $header = $(this);
         $content = $(".video_adjust_content");
         $content.slideToggle(200, function () { });
 
-    });
-
-    $('[data-toggle="tooltip"]').tooltip({
-        trigger: "hover"
     });
 
     $("#video_adjustments_reset").click(function () {
@@ -155,105 +108,129 @@ $(document).ready(function () {
 
     });
 
+    // FullView button handler
+    $("#forceStretch").click(function (e) {
+        e.preventDefault();
+        const isActive = $(this).hasClass('active');
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            if (!tabs[0]) return;
+            
+            const newMode = isActive ? 0 : 1;
+            
+            chrome.storage.local.set({ "extensionMode": newMode }, function() {
+                if (newMode === 1) {
+                    $("#forceStretch").addClass('active');
+                    $("#forceAspect").removeClass('active');
+                } else {
+                    $("#forceStretch").removeClass('active');
+                }
+                
+                // Execute content script update
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: (mode) => {
+                        // Trigger a custom event that the content script listens for
+                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', { 
+                            detail: { mode: mode } 
+                        }));
+                    },
+                    args: [newMode]
+                });
+            });
+        });
+    });
+
+    // StretchView button handler
+    $("#forceAspect").click(function (e) {
+        e.preventDefault();
+        const isActive = $(this).hasClass('active');
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            if (!tabs[0]) return;
+            
+            const newMode = isActive ? 0 : 2;
+            
+            chrome.storage.local.set({ "extensionMode": newMode }, function() {
+                if (newMode === 2) {
+                    $("#forceAspect").addClass('active');
+                    $("#forceStretch").removeClass('active');
+                } else {
+                    $("#forceAspect").removeClass('active');
+                }
+                
+                // Execute content script update
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: (mode) => {
+                        // Trigger a custom event that the content script listens for
+                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', { 
+                            detail: { mode: mode } 
+                        }));
+                    },
+                    args: [newMode]
+                });
+            });
+        });
+    });
+
+    // PIP button handler
+    $("#btnPiP").click(function () {
+        const isActive = $(this).hasClass('active');
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            if (!tabs[0]) return;
+            
+            // First update storage
+            chrome.storage.local.set({ "togglePiP": !isActive }, function() {
+                // Then execute PiP functionality
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: togglePiP,
+                    args: [!isActive]
+                });
+            });
+        });
+    });
+
+    // Update storage listener to be more specific
+    chrome.storage.onChanged.addListener(function(changes) {
+        if ("togglePiP" in changes) {
+            const isPiPEnabled = changes.togglePiP.newValue;
+            $("#btnPiP").toggleClass('active', isPiPEnabled);
+        }
+    });
+
+    // Handle all link clicks
+    $(document).on('click', 'a', function(e) {
+        e.preventDefault();
+        const url = $(this).data('url') || $(this).attr('href');
+        if (url) {
+            chrome.tabs.create({ url: url });
+        }
+    });
 
 });
 
-function loadImages(images_to_fetch) {
-    recursiveLoad(images_to_fetch, 0);
-}
-
-function fetchImages(images_to_fetch) {
-    Object.keys(images_to_fetch).forEach(ele => {
-        chrome.storage.local.set({ ele: "" }, function () { });
+function loadSiteNames(supported_sites) {
+    const brands_dynamic = document.getElementById('brands_dynamic');
+    
+    // Clear existing content
+    brands_dynamic.innerHTML = '';
+    
+    // Create a container for the site names
+    const sitesContainer = document.createElement('div');
+    sitesContainer.className = 'sites-container';
+    
+    // Add each site name
+    Object.entries(supported_sites).forEach(([site, displayName]) => {
+        const siteLink = document.createElement('a');
+        siteLink.className = 'site-link';
+        siteLink.dataset.url = `https://www.${site}.com`;  // Store URL in data attribute
+        siteLink.textContent = displayName;
+        
+        sitesContainer.appendChild(siteLink);
     });
-    recursiveFetch(images_to_fetch, 0);
-}
-
-function recursiveLoad(images_to_fetch, index) {
-    var size = Object.keys(images_to_fetch).length;
-    if (index < size) {
-        var key = Object.keys(images_to_fetch)[index];
-        var link = images_to_fetch[key];
-
-        var base64 = "";
-        if (localStorage.getItem(key)) {
-            base64 = localStorage.getItem(key);
-        } else {
-            base64 = "/images/loader.gif";
-        }
-
-        var img_html_base64 = '<a href="http://www.' + key + '.com" class="sites-icon" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
-
-        var brand_logos_dynamic = document.getElementById('brand_logos_dynamic');
-        brand_logos_dynamic.innerHTML += img_html_base64;
-
-        recursiveLoad(images_to_fetch, index + 1);
-
-    }
-}
-
-function recursiveFetch(images_to_fetch, index) {
-    var size = Object.keys(images_to_fetch).length;
-    if (index < size) {
-
-        // Fetchig Process
-        var key = Object.keys(images_to_fetch)[index];
-        var img_url = images_to_fetch[key];
-        data = {
-            http_remote_url: img_url,
-            http_remote_file: "(binary)",
-            http_reverse_code: "",
-            http_compressimage: "1",
-            TF_nonce: "0f4a9e1824",
-            _wp_http_referer: "/online-tools/base64-image-converter/",
-            aatoolstoken: "3e4ft9f",
-            aatoolstoken_ip: "3qj3jb7"
-        }
-
-        var XHR = new XMLHttpRequest();
-        var urlEncodedData = "";
-        var urlEncodedDataPairs = [];
-        var name;
-        XHR.responseType = 'document';
-
-        // Turn the data object into an array of URL-encoded key/value pairs.
-        for (name in data) {
-            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
-        }
-
-        // Combine the pairs into a single string and replace all %-encoded spaces to 
-        // the '+' character; matches the behaviour of browser form submissions.
-        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-        // Define what happens on successful data submission
-        XHR.addEventListener('load', function (event) {
-
-            //console.log(XHR.responseXML.getElementById("ta_raw").value);
-            var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
-
-            localStorage.setItem(key, img_html_value);
-            localStorage.setItem('NumberOfImagesCached', (index + 1));
-
-            document.getElementById('brand_logos_dynamic').innerHTML = "";
-            recursiveLoad(images_to_fetch, 0);
-            recursiveFetch(images_to_fetch, index + 1);
-        });
-
-        // Define what happens in case of error
-        XHR.addEventListener('error', function (event) {
-            console.log('Oops! Something goes wrong, FAILED TO LOAD IMAGES.');
-        });
-
-        // Set up our request
-        var theUrl = "https://www.askapache.com/online-tools/base64-image-converter/";
-        XHR.open('POST', theUrl);
-
-        // Add the required HTTP header for form data POST requests
-        XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // Finally, send our data.
-        XHR.send(urlEncodedData);
-
-        // Fetching process end
-    }
+    
+    brands_dynamic.appendChild(sitesContainer);
 }

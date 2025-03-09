@@ -1,0 +1,50 @@
+{
+    "name": "StretchView",
+    "short_name": "StretchView",
+    "version": "6.0.0",
+    "description": {
+        "en": "Ultimate Video Aspect Ratio Controller & Picture-in-Picture Tool for streaming platforms",
+        "hi": "स्ट्रीमिंग प्लेटफॉर्म के लिए अल्टीमेट वीडियो एस्पेक्ट रेशियो कंट्रोलर"
+    },
+    "author": {
+        "name": "MCISMc",
+        "url": "https://github.com/MCISMc"
+    },
+    "categories": [
+        "Productivity",
+        "Entertainment"
+    ],
+    "screenshots": [
+        {
+            "path": "screenshots/1-main.png",
+            "description": "Main interface with video controls"
+        },
+        {
+            "path": "screenshots/2-pip.png",
+            "description": "Picture-in-Picture mode demonstration"
+        },
+        {
+            "path": "screenshots/3-stretchview.png",
+            "description": "StretchView mode demonstration"
+        }
+    ],
+    "promotional": {
+        "tile_small": "promo/tile-small.png",
+        "tile_large": "promo/tile-large.png",
+        "marquee": "promo/marquee.png"
+    },
+    "supported_locales": ["en", "hi"],
+    "target_platforms": ["chromium"],
+    "content_scripts": [
+        "YouTube",
+        "Netflix",
+        "Prime Video",
+        "Disney+ Hotstar",
+        "and more"
+    ],
+    "permissions_justification": {
+        "activeTab": "Required to modify video player elements",
+        "storage": "Store user preferences and settings",
+        "scripting": "Apply video adjustments and controls"
+    }
+} 

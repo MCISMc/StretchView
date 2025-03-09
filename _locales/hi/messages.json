@@ -1,0 +1,38 @@
+{
+   "appDesc": {
+      "description": "Description shown in Chrome Web Store and extension details",
+      "message": "StretchView - वीडियो से काली पट्टियां हटाएं और Netflix, YouTube, Prime Video आदि पर बेहतर अनुभव पाएं!"
+   },
+   "appName": {
+      "description": "Name of the extension shown in Chrome Web Store",
+      "message": "StretchView"
+   },
+   "appShortName": {
+      "description": "Short name for extension",
+      "message": "StretchView"
+   },
+   "btnFullView": {
+      "message": "पूर्ण दृश्य"
+   },
+   "btnStretchView": {
+      "message": "स्ट्रेच दृश्य"
+   },
+   "btnPiP": {
+      "message": "पिक्चर-इन-पिक्चर"
+   },
+   "videoAdjustments": {
+      "message": "वीडियो समायोजन"
+   },
+   "brightness": {
+      "message": "चमक"
+   },
+   "contrast": {
+      "message": "कंट्रास्ट"
+   },
+   "saturation": {
+      "message": "संतृप्ति"
+   },
+   "reset": {
+      "message": "रीसेट"
+   }
+} 

@@ -1,126 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>StretchView</title>
-    <style>
-
-    </style>
-
-    <script src="../Jquery/jquery-2.1.3.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery/jquery-2.1.3/jquery-2.1.3.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/bootstrap/4.1.3/bootstrap.min.css" />
-
-
-    <script src="../js/popup.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/radio_btn/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="../js/popup.js"></script>
 </head>
 
 <body>
+    <div class="extension-header">
+        <img src="../images/logo-48.png" alt="StretchView">
+        <h1>Stretch<span>VIEW</span></h1>
+    </div>
 
-    <div class="container col-xs-12">
-        <center>
-            <h4 class="extension_title">
-                <img style="float: left;" src="/images/logo-48.png" />
-                <div style="margin: 10px 0px;padding: 0  10px; color: white">Stretch<span
-                        style="color: red;">VIEW</span>
-                </div>
-            </h4>
-            <hr style="margin: 0.2rem 0 0.5rem 0;">
-            <div class="jumbotron">
-                <center>
-                    <input data-html="true" class="radio_box" type="radio" id="off" name="radio_box" value="0"
-                        data-icon='OFF' data-toggle="tooltip" data-placement="bottom" title="Defaults" />
-                    <input data-html="true" class="radio_box" type="radio" id="forceStretch" name="radio_box" value="1"
-                        data-icon='FullView' data-toggle="tooltip" data-placement="bottom"
-                        title="FullView video cropping and stretching </br>[ Shortcut-key : ' G ' ]" />
-                    <input data-html="true" class="radio_box" type="radio" id="forceAspect" name="radio_box" value="2"
-                        data-icon='StretchView' data-toggle="tooltip" data-placement="bottom"
-                        title="Stretch video upto screen width </br>[ Shortcut-key : ' G ' ]" />
-                    <input data-html="true" class="radio_box" type="checkbox" id="btnPiP" name="btnPiP" value="0"
-                        data-icon='PIP' data-toggle="tooltip" data-placement="auto"
-                        title="Picture-in-Picture Mode </br>[ Shortcut-key : ' Shift + G ' ]" />
-                </center>
-                <hr style="margin: 0.9rem 0 0.2rem;">
-                <center>
-                    <div class="video_adjust_container">
-                        <span class="video_adjust_title" data-toggle="tooltip" data-html="true" data-placement="top"
-                            title="Video <em>Color Correction Tool.</em></br> ( Click to <b>SHOW / HIDE</b> )">Video
-                            Adjustments ( BETA )</span>
-                        <button type="button" id="video_adjustments_reset" class="close" aria-label="Close"
-                            style=" color: gray;margin-right:20px;font-size: 22px;" data-toggle="tooltip"
-                            data-placement="left" title="Reset video adjustments">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="video_adjust_content">
-                            <div style="clear: both;"></div>
-                            <hr style="margin: 0.2rem 0 0.5em 0;">
-                            <div style="clear: both;"></div>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="option_title">Brightness :</div>
-                                        </td>
-                                        <td>
-                                            <div class="slidecontainer"><input type="range" min="1" max="200"
-                                                    value="100" class="custom-range" id="brightness_slider"></div>
-                                        </td>
-                                        <td><span id="brightness_slider_output">100</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="option_title">Contrast :</div>
-                                        </td>
-                                        <td>
-                                            <div class="slidecontainer"><input type="range" min="1" max="200"
-                                                    value="100" class="custom-range" id="contrast_slider"></div>
-                                        </td>
-                                        <td><span id="contrast_slider_output">100</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="option_title">Saturation :</div>
-                                        </td>
-                                        <td>
-                                            <div class="slidecontainer"><input type="range" min="1" max="200"
-                                                    value="100" class="custom-range" id="saturation_slider"></div>
-                                        </td>
-                                        <td><span id="saturation_slider_output">100</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </center>
-                <hr style="margin: 0.2rem 0 0.2rem;">
-                <center id="brand_logos_dynamic">
-                    <div class="loader" id="loader" style="display: none"></div>
-                </center>
-                <hr style="margin: 1rem 0 0.2rem;" />
-                <h6 style="color:darkgray;">Rate this extension</h6>
-                <div class="all_stars">
-                    <a href="https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci">
-                        <span class="fas fa-star c_star"></span>
-                        <span class="fas fa-star c_star"></span>
-                        <span class="fas fa-star c_star"></span>
-                        <span class="fas fa-star c_star"></span>
-                        <span class="fas fa-star c_star"></span>
-                    </a>
-                </div>
-                <hr style="margin:0.4rem 0 0.2rem;" />
-                <h6>Created by <a href="https://github.com/MCISMc/" target="_blank">#MCISMc</a> and <a
-                        href="https://github.com/pishangujeniya/" target="_blank">Pishang Ujeniya</a></h6>
+    <div class="control-buttons">
+        <button id="forceStretch" class="control-button">FullView</button>
+        <button id="forceAspect" class="control-button">StretchView</button>
+        <button id="btnPiP" class="control-button">PIP</button>
+    </div>
 
-                <p style="font-size:0.5em;">
-                    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the
-                    developers are of no responsibility in any case. Logos are copyright to their respective owners
-                </p>
+    <div class="video-adjustments">
+        <div class="video-adjustments-header">
+            <h2>Video Adjustments</h2>
+            <button id="video_adjustments_reset" class="reset-button">Reset</button>
+        </div>
+        <div class="video-adjustments-content">
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Brightness</span>
+                    <span id="brightness_slider_output">100</span>
+                </div>
+                <input type="range" min="1" max="200" value="100" class="slider" id="brightness_slider">
             </div>
-        </center>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Contrast</span>
+                    <span id="contrast_slider_output">100</span>
+                </div>
+                <input type="range" min="1" max="200" value="100" class="slider" id="contrast_slider">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Saturation</span>
+                    <span id="saturation_slider_output">100</span>
+                </div>
+                <input type="range" min="1" max="200" value="100" class="slider" id="saturation_slider">
+            </div>
+        </div>
+    </div>
+
+    <div id="brands_dynamic"></div>
+
+    <div class="rating-section">
+        <h3>Rate this extension</h3>
+        <div class="all_stars">
+            <a data-url="https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci">
+                <span class="fas fa-star c_star"></span>
+                <span class="fas fa-star c_star"></span>
+                <span class="fas fa-star c_star"></span>
+                <span class="fas fa-star c_star"></span>
+                <span class="fas fa-star c_star"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="extension-footer">
+        <a data-url="https://github.com/MCISMc/StretchView">
+            <i class="fab fa-github github-icon"></i>
+            <u>View on GitHub</u>
+        </a>
+        <div class="made-in-india">
+            Proudly made in India <i class="fas fa-heart heart-icon"></i>
+        </div>
+        <div class="footer-warning">
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the developers are not responsible in any case. Logos are copyright to their respective owners.
+        </div>
     </div>
 </body>
 
