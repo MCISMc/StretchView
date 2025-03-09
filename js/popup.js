@@ -1,9 +1,6 @@
 $(document).ready(function () {
-    // Remove the nested document.ready and keep just one link handler
-    $('body').on('click', 'a', function () {
-        chrome.tabs.create({ url: $(this).attr('href') });
-        return false;
-    });
+    // Remove the link handler since we'll use regular anchor behavior
+    $('body').off('click', 'a');
 
     // Define supported sites
     const supported_sites = {
@@ -210,6 +207,15 @@ $(document).ready(function () {
         }
     });
 
+    // Handle all link clicks
+    $(document).on('click', 'a', function(e) {
+        e.preventDefault();
+        const url = $(this).data('url') || $(this).attr('href');
+        if (url) {
+            chrome.tabs.create({ url: url });
+        }
+    });
+
 });
 
 function loadSiteNames(supported_sites) {
@@ -225,9 +231,8 @@ function loadSiteNames(supported_sites) {
     // Add each site name
     Object.entries(supported_sites).forEach(([site, displayName]) => {
         const siteLink = document.createElement('a');
-        siteLink.href = `http://www.${site}.com`;
         siteLink.className = 'site-link';
-        siteLink.target = '_blank';
+        siteLink.dataset.url = `https://www.${site}.com`;  // Store URL in data attribute
         siteLink.textContent = displayName;
         
         sitesContainer.appendChild(siteLink);
