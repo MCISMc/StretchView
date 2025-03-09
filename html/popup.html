@@ -13,76 +13,77 @@
 </head>
 
 <body>
-    <div class="extension-header">
-        <img src="../images/logo-48.png" alt="StretchView">
-        <h1>Stretch<span>VIEW</span></h1>
-    </div>
+<div class="extension-header">
+    <img src="../images/logo-48.png" alt="StretchView">
+    <h1>Stretch<span>VIEW</span></h1>
+    <button id="toggleExtension" class="control-button">Enable/Disable</button>
+</div>
 
-    <div class="control-buttons">
-        <button id="forceStretch" class="control-button">FullView</button>
-        <button id="forceAspect" class="control-button">StretchView</button>
-        <button id="btnPiP" class="control-button">PIP</button>
-    </div>
+<div class="control-buttons">
+    <button id="forceStretch" class="control-button">FullView</button>
+    <button id="forceAspect" class="control-button">StretchView</button>
+    <button id="btnPiP" class="control-button">PIP</button>
+</div>
 
-    <div class="video-adjustments">
-        <div class="video-adjustments-header">
-            <h2>Video Adjustments</h2>
-            <button id="video_adjustments_reset" class="reset-button">Reset</button>
+<div class="video-adjustments">
+    <div class="video-adjustments-header">
+        <h2>Video Adjustments</h2>
+        <button id="video_adjustments_reset" class="reset-button">Reset</button>
+    </div>
+    <div class="video-adjustments-content">
+        <div class="slider-container">
+            <div class="slider-label">
+                <span>Brightness</span>
+                <span id="brightness_slider_output">100</span>
+            </div>
+            <input type="range" min="1" max="200" value="100" class="slider" id="brightness_slider">
         </div>
-        <div class="video-adjustments-content">
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Brightness</span>
-                    <span id="brightness_slider_output">100</span>
-                </div>
-                <input type="range" min="1" max="200" value="100" class="slider" id="brightness_slider">
-            </div>
 
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Contrast</span>
-                    <span id="contrast_slider_output">100</span>
-                </div>
-                <input type="range" min="1" max="200" value="100" class="slider" id="contrast_slider">
+        <div class="slider-container">
+            <div class="slider-label">
+                <span>Contrast</span>
+                <span id="contrast_slider_output">100</span>
             </div>
-
-            <div class="slider-container">
-                <div class="slider-label">
-                    <span>Saturation</span>
-                    <span id="saturation_slider_output">100</span>
-                </div>
-                <input type="range" min="1" max="200" value="100" class="slider" id="saturation_slider">
-            </div>
+            <input type="range" min="1" max="200" value="100" class="slider" id="contrast_slider">
         </div>
-    </div>
 
-    <div id="brands_dynamic"></div>
-
-    <div class="rating-section">
-        <h3>Rate this extension</h3>
-        <div class="all_stars">
-            <a data-url="https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci">
-                <span class="fas fa-star c_star"></span>
-                <span class="fas fa-star c_star"></span>
-                <span class="fas fa-star c_star"></span>
-                <span class="fas fa-star c_star"></span>
-                <span class="fas fa-star c_star"></span>
-            </a>
+        <div class="slider-container">
+            <div class="slider-label">
+                <span>Saturation</span>
+                <span id="saturation_slider_output">100</span>
+            </div>
+            <input type="range" min="1" max="200" value="100" class="slider" id="saturation_slider">
         </div>
     </div>
+</div>
 
-    <div class="extension-footer">
-        <a data-url="https://github.com/MCISMc/StretchView">
-            <i class="fab fa-github github-icon"></i>
-            <u>View on GitHub</u>
+<div id="brands_dynamic"></div>
+
+<div class="rating-section">
+    <h3>Rate this extension</h3>
+    <div class="all_stars">
+        <a data-url="https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci">
+            <span class="fas fa-star c_star"></span>
+            <span class="fas fa-star c_star"></span>
+            <span class="fas fa-star c_star"></span>
+            <span class="fas fa-star c_star"></span>
+            <span class="fas fa-star c_star"></span>
         </a>
-        <div class="made-in-india">
-            Proudly made in India <i class="fas fa-heart heart-icon"></i>
-        </div>
-        <div class="footer-warning">
-            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the developers are not responsible in any case. Logos are copyright to their respective owners.
-        </div>
     </div>
+</div>
+
+<div class="extension-footer">
+    <a data-url="https://github.com/MCISMc/StretchView">
+        <i class="fab fa-github github-icon"></i>
+        <u>View on GitHub</u>
+    </a>
+    <div class="made-in-india">
+        Proudly made in India <i class="fas fa-heart heart-icon"></i>
+    </div>
+    <div class="footer-warning">
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND and the developers are not responsible in any case. Logos are copyright to their respective owners.
+    </div>
+</div>
 </body>
 
 </html>

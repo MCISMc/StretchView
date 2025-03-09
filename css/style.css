@@ -16,6 +16,7 @@ body {
 .extension-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 0 8px 0;
     margin-bottom: 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -32,6 +33,11 @@ body {
     font-size: 16px;
     font-weight: 500;
     color: #ffffff;
+    flex-grow: 1;
+}
+
+#toggleExtension {
+    margin-left: auto;
 }
 
 /* Control buttons styling */
