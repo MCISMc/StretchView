@@ -3,8 +3,8 @@
     "short_name": "StretchView",
     "version": "6.0.0",
     "description": {
-        "en": "Ultimate Video Aspect Ratio Controller & Picture-in-Picture Tool for streaming platforms",
-        "hi": "स्ट्रीमिंग प्लेटफॉर्म के लिए अल्टीमेट वीडियो एस्पेक्ट रेशियो कंट्रोलर"
+        "en": "Remove black bars from streaming videos. Control aspect ratio, use PiP mode, and enhance video playback on popular platforms.",
+        "hi": "वीडियो से काली पट्टियां हटाएं और बेहतर देखने का अनुभव पाएं"
     },
     "author": {
         "name": "MCISMc",
