@@ -1,13 +1,9 @@
 $(document).ready(function () {
-
-    //To work a href links in popup html START
-    $(document).ready(function () {
-        $('body').on('click', 'a', function () {
-            chrome.tabs.create({ url: $(this).attr('href') });
-            return false;
-        });
+    // Remove the nested document.ready and keep just one link handler
+    $('body').on('click', 'a', function () {
+        chrome.tabs.create({ url: $(this).attr('href') });
+        return false;
     });
-    //To work a href links in popup html END
 
     // Define supported sites
     const supported_sites = {
@@ -45,63 +41,78 @@ $(document).ready(function () {
     });
 
     chrome.storage.local.get("togglePiP", function (results) {
-        $("#btnPiP").prop("checked", results.togglePiP);
+        if (results.togglePiP) {
+            $("#btnPiP").addClass('active');
+        }
     });
 
     $("#off").click(function () {
         $("#forceStretch").prop("checked", false);
         $("#forceAspect").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 0 }, function () {
+        chrome.storage.local.set({ "extensionMode": 0 }, function () { });
+
+        $("#btnPiP").removeClass('active');
+        chrome.storage.local.set({ "togglePiP": false }, function () { });
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            if (tabs[0]) {
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: togglePiP,
+                    args: [false]
+                });
+            }
         });
     });
 
     $("#forceStretch").click(function () {
         $("#off").prop("checked", false);
         $("#forceAspect").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 1 }, function () {
-        });
+        chrome.storage.local.set({ "extensionMode": 1 }, function () { });
     });
     $("#forceAspect").click(function () {
         $("#off").prop("checked", false);
         $("#forceStretch").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 2 }, function () {
-        });
+        chrome.storage.local.set({ "extensionMode": 2 }, function () { });
     });
 
-    $("#btnPiP").on('change', function () {
-        chrome.storage.local.set({ "togglePiP": $(this).prop('checked') }, function () { });
+    $("#btnPiP").click(function () {
+        const isActive = $(this).hasClass('active');
+        
+        $(this).toggleClass('active');
+        
+        chrome.storage.local.set({ "togglePiP": !isActive }, function () { });
 
-        // Get the current active tab first
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             if (tabs[0]) {
-                // Execute the PiP toggle script
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
-                    function: togglePiP
+                    function: togglePiP,
+                    args: [!isActive]
                 });
             }
         });
     });
 
-    // Define the PiP toggle function that will be injected
-    function togglePiP() {
+    function togglePiP(enterPiP) {
         (async () => {
-            var video_elements_list = document.getElementsByTagName("video");
-            if (video_elements_list) {
-                for (var i = 0; i < video_elements_list.length; i++) {
-                    if (!video_elements_list[i].paused) {
-                        try {
-                            if (video_elements_list[i] !== document.pictureInPictureElement) {
-                                await video_elements_list[i].requestPictureInPicture();
-                            } else {
-                                await document.exitPictureInPicture();
-                            }
-                        }
-                        catch (error) {
-                            console.log(error);
-                        }
+            try {
+                const videos = document.getElementsByTagName("video");
+                if (!videos.length) return;
+
+                const video = Array.from(videos).find(v => !v.paused) || videos[0];
+
+                if (enterPiP) {
+                    if (document.pictureInPictureElement !== video) {
+                        await video.requestPictureInPicture();
+                    }
+                } else {
+                    if (document.pictureInPictureElement) {
+                        await document.exitPictureInPicture();
                     }
                 }
+            } catch (error) {
+                console.log('PiP error:', error);
             }
         })();
     }
@@ -111,10 +122,6 @@ $(document).ready(function () {
         $content = $(".video_adjust_content");
         $content.slideToggle(200, function () { });
 
-    });
-
-    $('[data-toggle="tooltip"]').tooltip({
-        trigger: "hover"
     });
 
     $("#video_adjustments_reset").click(function () {
