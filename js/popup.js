@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    // Remove the link handler since we'll use regular anchor behavior
-    $('body').off('click', 'a');
-
     // Define supported sites
     const supported_sites = {
         "primevideo": "Prime Video",
@@ -184,12 +181,9 @@ $(document).ready(function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             if (!tabs[0]) return;
             
-            // Update storage and button state together
+            // First update storage
             chrome.storage.local.set({ "togglePiP": !isActive }, function() {
-                // Toggle button state after storage is updated
-                $("#btnPiP").toggleClass('active');
-                
-                // Execute PiP functionality
+                // Then execute PiP functionality
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     function: togglePiP,
@@ -199,7 +193,7 @@ $(document).ready(function () {
         });
     });
 
-    // Add listener for PiP state changes
+    // Update storage listener to be more specific
     chrome.storage.onChanged.addListener(function(changes) {
         if ("togglePiP" in changes) {
             const isPiPEnabled = changes.togglePiP.newValue;

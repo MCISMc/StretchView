@@ -212,21 +212,29 @@ var initEvents = function (StretchView) {
     });
 
     $(document).on('keydown', null, 'shift+g', function (event) {
-        chrome.storage.local.set({ "togglePiP": $(this).prop('checked') }, function () { });
-        var video_elements_list = document.getElementsByTagName("video");
-        if (video_elements_list) {
-            for (var i = 0; i < video_elements_list.length; i++) {
-                if (!video_elements_list[i].paused) {
-                    try {
-                        if (video_elements_list[i] !== document.pictureInPictureElement) {
-                            video_elements_list[i].requestPictureInPicture();
-                        } else { document.exitPictureInPicture(); }
+        chrome.storage.local.get(['togglePiP'], function(result) {
+            const newState = !result.togglePiP;
+            chrome.storage.local.set({ "togglePiP": newState }, function () {
+                const videos = document.getElementsByTagName("video");
+                if (!videos.length) return;
+
+                const video = Array.from(videos).find(v => !v.paused) || videos[0];
+                
+                try {
+                    if (newState) {
+                        if (document.pictureInPictureElement !== video) {
+                            video.requestPictureInPicture();
+                        }
+                    } else {
+                        if (document.pictureInPictureElement) {
+                            document.exitPictureInPicture();
+                        }
                     }
-                    catch (error) { console.log(error); }
-                    finally { }
+                } catch (error) {
+                    console.log('PiP error:', error);
                 }
-            }
-        }
+            });
+        });
     });
 
 
