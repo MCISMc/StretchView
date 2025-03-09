@@ -1,7 +1,7 @@
 {
    "appDesc": {
       "description": "Description shown in Chrome Web Store and extension details",
-      "message": "StretchView - Ultimate Video Aspect Ratio Controller & Picture-in-Picture Tool. Remove black bars from streaming videos on Netflix, YouTube, Prime Video & more!"
+      "message": "Remove black bars from streaming videos. Control aspect ratio, use PiP mode, and enhance video playback on popular platforms."
    },
    "appName": {
       "description": "Name of the extension shown in Chrome Web Store",
