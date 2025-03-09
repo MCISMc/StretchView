@@ -1,21 +1,22 @@
 StretchView.prototype.classCheck = function () {
-    //    console.log(this.scale, this.fullscreen);
-    switch (this.mode) {
-        // 0: off; 1: aspect; 2: zoom;
-        case 0:
-            $("video").removeClass("extraClassAspect");
-            $("video").removeClass("extraClassCrop");
-            break;
-        case 1:
-            $("video").removeClass("extraClassAspect");
-            $("video").addClass("extraClassCrop");
-            break;
-        case 2:
-            $("video").addClass("extraClassAspect");
-            $("video").removeClass("extraClassCrop");
-            break;
-    }   
+    const videos = document.getElementsByTagName("video");
+    if (!videos.length) return;
 
+    Array.from(videos).forEach(video => {
+        switch (this.mode) {
+            case 0:
+                video.classList.remove("extraClassAspect", "extraClassCrop");
+                break;
+            case 1:
+                video.classList.remove("extraClassAspect");
+                video.classList.add("extraClassCrop");
+                break;
+            case 2:
+                video.classList.add("extraClassAspect");
+                video.classList.remove("extraClassCrop");
+                break;
+        }
+    });
 };
 
 
@@ -64,7 +65,7 @@ function StretchView() {
 
     //Check if url is AirtelXstream
     this.fixScale = function () {
-        if(window.location.href.indexOf("www.airtelxstream.in") > 0) {
+        if (window.location.href.indexOf("www.airtelxstream.in") > 0) {
             this.scaleX = 1.343;
             this.scale = 1.33;
         }
@@ -87,20 +88,24 @@ function StretchView() {
     };
 
     this.createCSS = function () {
-        $('#extraClass').remove();
+        const existingStyle = document.getElementById("extraClass");
+        if (existingStyle) {
+            existingStyle.remove();
+        }
 
-        var sheet = document.createElement('style')
-        sheet.setAttribute("id", "extraClass");
-        sheet.innerHTML =
-            ".extraClassAspect {" +
-            "-webkit-transform: scaleX(" + this.scaleX + ")!important;" +
-            //                "object-fit: fill!important;" +
-            "}" +
-            ".extraClassCrop {" +
-            "-webkit-transform: scale(1.0," + this.scale + ")!important;" +
-            //                "object-fit: cover!important;" +
-            "}";
-        document.body.appendChild(sheet);
+        const sheet = document.createElement('style');
+        sheet.id = "extraClass";
+        sheet.textContent = `
+            .extraClassAspect {
+                -webkit-transform: scaleX(${this.scaleX})!important;
+                transform: scaleX(${this.scaleX})!important;
+            }
+            .extraClassCrop {
+                -webkit-transform: scale(1.0,${this.scale})!important;
+                transform: scale(1.0,${this.scale})!important;
+            }
+        `;
+        document.head.appendChild(sheet);
     };
 
     this.setMode = function (mode) {
@@ -122,7 +127,7 @@ $(document).ready(function () {
         initEvents(StretchView);
     });
     setVideoAdjustments();
-    setVideopipEventHandler();
+    setVideopEventHandler();
 });
 
 function setVideoAdjustments() {
@@ -141,24 +146,28 @@ function setVideoAdjustments() {
 }
 
 
-function setVideopipEventHandler() {
+function setVideopEventHandler() {
     var video_elements_list = document.getElementsByTagName("video");
-    if(video_elements_list) {
-      for (var i = 0; i < video_elements_list.length; i++) {
-        video_elements_list[i].addEventListener('enterpictureinpicture', function(event) {
-            chrome.storage.local.set({ "togglePiP": true }, function () {
-                $("#btnPiP").prop("checked", true);
-            });        
+    if (!video_elements_list) return;
+
+    for (var i = 0; i < video_elements_list.length; i++) {
+        video_elements_list[i].addEventListener('enterpictureinpicture', function (event) {
+            try {
+                chrome.storage.local.set({ "togglePiP": true });
+            } catch (error) {
+                console.log('PiP enter error:', error);
+            }
         });
 
-        video_elements_list[i].addEventListener('leavepictureinpicture', function(event) {
-            chrome.storage.local.set({ "togglePiP": false }, function () {
-                $("#btnPiP").prop("checked", false);
-            });
+        video_elements_list[i].addEventListener('leavepictureinpicture', function (event) {
+            try {
+                chrome.storage.local.set({ "togglePiP": false });
+            } catch (error) {
+                console.log('PiP leave error:', error);
+            }
         });
-      }
-    }    
-} 
+    }
+}
 
 
 
@@ -203,33 +212,45 @@ var initEvents = function (StretchView) {
     });
 
     $(document).on('keydown', null, 'shift+g', function (event) {
-        chrome.storage.local.set({ "togglePiP": $(this).prop('checked')}, function () {});
-            var video_elements_list = document.getElementsByTagName("video");
-            if(video_elements_list) {
-              for (var i = 0; i < video_elements_list.length; i++) {
-                if(!video_elements_list[i].paused) {
+        chrome.storage.local.set({ "togglePiP": $(this).prop('checked') }, function () { });
+        var video_elements_list = document.getElementsByTagName("video");
+        if (video_elements_list) {
+            for (var i = 0; i < video_elements_list.length; i++) {
+                if (!video_elements_list[i].paused) {
                     try {
-                      if (video_elements_list[i] !== document.pictureInPictureElement) {
-                        video_elements_list[i].requestPictureInPicture();
-                      } else { document.exitPictureInPicture(); }
+                        if (video_elements_list[i] !== document.pictureInPictureElement) {
+                            video_elements_list[i].requestPictureInPicture();
+                        } else { document.exitPictureInPicture(); }
                     }
-                    catch(error) { console.log(error); }
-                    finally {}
+                    catch (error) { console.log(error); }
+                    finally { }
                 }
-              }
             }
+        }
     });
 
 
 
     chrome.storage.onChanged.addListener(function (changes) {
         if ("extensionMode" in changes) {
-            StretchView.setMode(changes.extensionMode.newValue);
+            const newMode = changes.extensionMode.newValue;
+            
+            // Apply changes immediately without delay
+            StretchView.setMode(newMode);
+            StretchView.setScale();
+            StretchView.fixScale();
+            StretchView.createCSS();
+            StretchView.classCheck();
         }
-        StretchView.setScale();
-        StretchView.fixScale();
-        StretchView.createCSS();
-        StretchView.classCheck();
         setVideoAdjustments();
     });
 };
+
+window.addEventListener('stretchview-mode-change', function(e) {
+    const newMode = e.detail.mode;
+    StretchView.setMode(newMode);
+    StretchView.setScale();
+    StretchView.fixScale();
+    StretchView.createCSS();
+    StretchView.classCheck();
+});

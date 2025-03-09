@@ -22,76 +22,21 @@ $(document).ready(function () {
     // Load site names immediately
     loadSiteNames(supported_sites);
 
-    var isOn = -1;
-    chrome.storage.local.get("extensionMode", function (results) {
-        var mode = results.extensionMode;
-        switch (mode) {
-            // 0: off; 1: stretch; 2: fix-aspect-ratio;
+    // Update initial states
+    chrome.storage.local.get(["extensionMode", "togglePiP"], function (results) {
+        // Set initial states based on storage
+        switch (results.extensionMode) {
             case 1:
-                $("#forceStretch").prop("checked", true);
+                $("#forceStretch").addClass("active");
                 break;
             case 2:
-                $("#forceAspect").prop("checked", true);
-                break;
-            case 0:
-            default:
-                $("#off").prop("checked", true);
+                $("#forceAspect").addClass("active");
                 break;
         }
-    });
-
-    chrome.storage.local.get("togglePiP", function (results) {
+        
         if (results.togglePiP) {
             $("#btnPiP").addClass('active');
         }
-    });
-
-    $("#off").click(function () {
-        $("#forceStretch").prop("checked", false);
-        $("#forceAspect").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 0 }, function () { });
-
-        $("#btnPiP").removeClass('active');
-        chrome.storage.local.set({ "togglePiP": false }, function () { });
-        
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            if (tabs[0]) {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    function: togglePiP,
-                    args: [false]
-                });
-            }
-        });
-    });
-
-    $("#forceStretch").click(function () {
-        $("#off").prop("checked", false);
-        $("#forceAspect").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 1 }, function () { });
-    });
-    $("#forceAspect").click(function () {
-        $("#off").prop("checked", false);
-        $("#forceStretch").prop("checked", false);
-        chrome.storage.local.set({ "extensionMode": 2 }, function () { });
-    });
-
-    $("#btnPiP").click(function () {
-        const isActive = $(this).hasClass('active');
-        
-        $(this).toggleClass('active');
-        
-        chrome.storage.local.set({ "togglePiP": !isActive }, function () { });
-
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            if (tabs[0]) {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    function: togglePiP,
-                    args: [!isActive]
-                });
-            }
-        });
     });
 
     function togglePiP(enterPiP) {
@@ -167,6 +112,102 @@ $(document).ready(function () {
             chrome.storage.local.set({ "saturation": $("#saturation_slider").val() }, function () { });
         });
 
+    });
+
+    // FullView button handler
+    $("#forceStretch").click(function (e) {
+        e.preventDefault();
+        const isActive = $(this).hasClass('active');
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            if (!tabs[0]) return;
+            
+            const newMode = isActive ? 0 : 1;
+            
+            chrome.storage.local.set({ "extensionMode": newMode }, function() {
+                if (newMode === 1) {
+                    $("#forceStretch").addClass('active');
+                    $("#forceAspect").removeClass('active');
+                } else {
+                    $("#forceStretch").removeClass('active');
+                }
+                
+                // Execute content script update
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: (mode) => {
+                        // Trigger a custom event that the content script listens for
+                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', { 
+                            detail: { mode: mode } 
+                        }));
+                    },
+                    args: [newMode]
+                });
+            });
+        });
+    });
+
+    // StretchView button handler
+    $("#forceAspect").click(function (e) {
+        e.preventDefault();
+        const isActive = $(this).hasClass('active');
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            if (!tabs[0]) return;
+            
+            const newMode = isActive ? 0 : 2;
+            
+            chrome.storage.local.set({ "extensionMode": newMode }, function() {
+                if (newMode === 2) {
+                    $("#forceAspect").addClass('active');
+                    $("#forceStretch").removeClass('active');
+                } else {
+                    $("#forceAspect").removeClass('active');
+                }
+                
+                // Execute content script update
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: (mode) => {
+                        // Trigger a custom event that the content script listens for
+                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', { 
+                            detail: { mode: mode } 
+                        }));
+                    },
+                    args: [newMode]
+                });
+            });
+        });
+    });
+
+    // PIP button handler
+    $("#btnPiP").click(function () {
+        const isActive = $(this).hasClass('active');
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            if (!tabs[0]) return;
+            
+            // Update storage and button state together
+            chrome.storage.local.set({ "togglePiP": !isActive }, function() {
+                // Toggle button state after storage is updated
+                $("#btnPiP").toggleClass('active');
+                
+                // Execute PiP functionality
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: togglePiP,
+                    args: [!isActive]
+                });
+            });
+        });
+    });
+
+    // Add listener for PiP state changes
+    chrome.storage.onChanged.addListener(function(changes) {
+        if ("togglePiP" in changes) {
+            const isPiPEnabled = changes.togglePiP.newValue;
+            $("#btnPiP").toggleClass('active', isPiPEnabled);
+        }
     });
 
 });
