@@ -24,8 +24,8 @@
             "description": "Picture-in-Picture mode demonstration"
         },
         {
-            "path": "screenshots/3-adjustments.png",
-            "description": "Video adjustment controls"
+            "path": "screenshots/3-stretchview.png",
+            "description": "StretchView mode demonstration"
         }
     ],
     "promotional": {
