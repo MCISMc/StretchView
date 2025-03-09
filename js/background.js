@@ -1,98 +1,55 @@
-function fetchImages(images_to_fetch) {
-    Object.keys(images_to_fetch).forEach(ele => {
-        chrome.storage.local.set({ ele: "" }, function () { });
-    });
-    recursiveFetch(images_to_fetch, 0);
-}
-
-function recursiveFetch(images_to_fetch, index) {
-    var size = Object.keys(images_to_fetch).length;
-    if (index < size) {
-
-        // Fetchig Process
-        var key = Object.keys(images_to_fetch)[index];
-        var img_url = images_to_fetch[key];
-        data = {
-            http_remote_url: img_url,
-            http_remote_file: "(binary)",
-            http_reverse_code: "",
-            http_compressimage: "1",
-            TF_nonce: "0f4a9e1824",
-            _wp_http_referer: "/online-tools/base64-image-converter/",
-            aatoolstoken: "3e4ft9f",
-            aatoolstoken_ip: "3qj3jb7"
-        }
-
-        var XHR = new XMLHttpRequest();
-        var urlEncodedData = "";
-        var urlEncodedDataPairs = [];
-        var name;
-        XHR.responseType = 'document';
-
-        // Turn the data object into an array of URL-encoded key/value pairs.
-        for (name in data) {
-            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
-        }
-
-        // Combine the pairs into a single string and replace all %-encoded spaces to 
-        // the '+' character; matches the behaviour of browser form submissions.
-        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-        // Define what happens on successful data submission
-        XHR.addEventListener('load', function (event) {
-
-            //console.log(XHR.responseXML.getElementById("ta_raw").value);
-            var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
-
-            localStorage.setItem(key, img_html_value);
-            localStorage.setItem('NumberOfImagesCached', (index + 1));
-
-            recursiveFetch(images_to_fetch, index + 1);
-        });
-
-        // Define what happens in case of error
-        XHR.addEventListener('error', function (event) {
-            console.log('Oops! Something goes wrong, FAILED TO LOAD IMAGES.');
-        });
-
-        // Set up our request
-        var theUrl = "https://www.askapache.com/online-tools/base64-image-converter/";
-        XHR.open('POST', theUrl);
-
-        // Add the required HTTP header for form data POST requests
-        XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // Finally, send our data.
-        XHR.send(urlEncodedData);
-
-        // Fetching process end
-    }
-}
-
-chrome.runtime.onInstalled.addListener(function (details) {
-
-    // Image Link and its key name
-    var images_to_fetch = {
-        "primevideo": "https://images.justwatch.com/icon/52449861/s100",
-        "netflix": "https://images.justwatch.com/icon/207360008/s100",
-        "youtube": "https://images.justwatch.com/icon/59562423/s100",
-        "jiocinema": "https://images.justwatch.com/icon/85114140/s100",
-        "altbalaji": "https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg",
-        "hotstar": "https://images.justwatch.com/icon/174849096/s100",
-        "sonyliv": "https://images.justwatch.com/icon/207468084/s100",
-        "zee5": "https://images.justwatch.com/icon/93795879/s100",
-        "voot": "https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png",
-        "airtelxstream": "https://lh3.googleusercontent.com/GixZgG5tr3hZ9ppKeGmeqqhqw6cJX-OlND8D6U4eT1KW9Ba8ThP_mfyMSo5qGfLvROw=s180-rw"
-    }
-
-    chrome.storage.local.set({ "togglePiP": false }, function () { });
-    chrome.storage.local.set({ "contrast": 100 }, function () { });
-    chrome.storage.local.set({ "brightness": 100 }, function () { });
-    chrome.storage.local.set({ "saturation": 100 }, function () { });
-    chrome.storage.local.set({ "extensionMode": 0 }, function () { });
-    localStorage.setItem('NumberOfImagesCached', 0);
-    fetchImages(images_to_fetch);
-
+// Convert background page to service worker
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
 });
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim());
+});
+
+// Initialize extension data on install
+chrome.runtime.onInstalled.addListener(function (details) {
+    // Initialize storage with default values
+    chrome.storage.local.set({
+        "togglePiP": false,
+        "contrast": 100,
+        "brightness": 100,
+        "saturation": 100,
+        "extensionMode": 0
+    });
+});
+
+// Rest of your background.js code with XMLHttpRequest replaced by fetch API
+async function fetchImages(images_to_fetch) {
+    for (const [key, url] of Object.entries(images_to_fetch)) {
+        try {
+            const response = await fetch("https://www.askapache.com/online-tools/base64-image-converter/", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    http_remote_url: url,
+                    http_remote_file: "(binary)",
+                    http_compressimage: "1"
+                })
+            });
+            
+            const data = await response.text();
+            
+            // Store image data
+            await chrome.storage.local.set({ [key]: data });
+            
+            // Increment counter
+            const result = await chrome.storage.local.get('numberOfImagesCached');
+            await chrome.storage.local.set({ 
+                'numberOfImagesCached': (result.numberOfImagesCached || 0) + 1 
+            });
+            
+        } catch (error) {
+            console.error('Failed to fetch image:', error);
+        }
+    }
+}
 
 

@@ -9,31 +9,22 @@ $(document).ready(function () {
     });
     //To work a href links in popup html END
 
+    // Define supported sites
+    const supported_sites = {
+        "primevideo": "Prime Video",
+        "netflix": "Netflix",
+        "youtube": "YouTube",
+        "jiocinema": "Jio Cinema",
+        "altbalaji": "Alt Balaji",
+        "hotstar": "Hotstar",
+        "sonyliv": "Sony Liv",
+        "zee5": "Zee5",
+        "voot": "Voot",
+        "airtelxstream": "Airtel Xstream"
+    };
 
-
-    // Image Link and its key name
-    var images_to_fetch = {
-        "primevideo": "https://images.justwatch.com/icon/52449861/s100",
-        "netflix": "https://images.justwatch.com/icon/207360008/s100",
-        "youtube": "https://images.justwatch.com/icon/59562423/s100",
-        "jiocinema": "https://images.justwatch.com/icon/85114140/s100",
-        "altbalaji": "https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg",
-        "hotstar": "https://images.justwatch.com/icon/174849096/s100",
-        "sonyliv": "https://images.justwatch.com/icon/207468084/s100",
-        "zee5": "https://images.justwatch.com/icon/93795879/s100",
-        "voot": "https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png",
-        "airtelxstream": "https://lh3.googleusercontent.com/GixZgG5tr3hZ9ppKeGmeqqhqw6cJX-OlND8D6U4eT1KW9Ba8ThP_mfyMSo5qGfLvROw=s180-rw"
-    }
-    // IMAGES CHROME STORAGE START
-
-    var NumberOfImagesCached = localStorage.getItem('NumberOfImagesCached');
-
-    if (NumberOfImagesCached == Object.keys(images_to_fetch).length) {
-        loadImages(images_to_fetch);
-    } else {
-        fetchImages(images_to_fetch);
-    }
-    // IMAGES CHROME STORAGE END
+    // Load site names immediately
+    loadSiteNames(supported_sites);
 
     var isOn = -1;
     chrome.storage.local.get("extensionMode", function (results) {
@@ -79,25 +70,41 @@ $(document).ready(function () {
 
     $("#btnPiP").on('change', function () {
         chrome.storage.local.set({ "togglePiP": $(this).prop('checked') }, function () { });
-        const code = `(async () => {
-            var video_elements_list = document.getElementsByTagName("video");
-            if(video_elements_list) {
-              for (var i = 0; i < video_elements_list.length; i++) {
-                if(!video_elements_list[i].paused) {
-                    try {
-                      if (video_elements_list[i] !== document.pictureInPictureElement) {
-                        await video_elements_list[i].requestPictureInPicture();
-                      } else { await document.exitPictureInPicture(); }
-                    }
-                    catch(error) { console.log(error); }
-                    finally {}
-                }
-              }
-            } 
-        })()`;
-        chrome.tabs.executeScript({ code, allFrames: true });
 
+        // Get the current active tab first
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            if (tabs[0]) {
+                // Execute the PiP toggle script
+                chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    function: togglePiP
+                });
+            }
+        });
     });
+
+    // Define the PiP toggle function that will be injected
+    function togglePiP() {
+        (async () => {
+            var video_elements_list = document.getElementsByTagName("video");
+            if (video_elements_list) {
+                for (var i = 0; i < video_elements_list.length; i++) {
+                    if (!video_elements_list[i].paused) {
+                        try {
+                            if (video_elements_list[i] !== document.pictureInPictureElement) {
+                                await video_elements_list[i].requestPictureInPicture();
+                            } else {
+                                await document.exitPictureInPicture();
+                            }
+                        }
+                        catch (error) {
+                            console.log(error);
+                        }
+                    }
+                }
+            }
+        })();
+    }
 
     $(".video_adjust_title").click(function () {
         $header = $(this);
@@ -155,105 +162,28 @@ $(document).ready(function () {
 
     });
 
-
 });
 
-function loadImages(images_to_fetch) {
-    recursiveLoad(images_to_fetch, 0);
-}
-
-function fetchImages(images_to_fetch) {
-    Object.keys(images_to_fetch).forEach(ele => {
-        chrome.storage.local.set({ ele: "" }, function () { });
+function loadSiteNames(supported_sites) {
+    const brands_dynamic = document.getElementById('brands_dynamic');
+    
+    // Clear existing content
+    brands_dynamic.innerHTML = '';
+    
+    // Create a container for the site names
+    const sitesContainer = document.createElement('div');
+    sitesContainer.className = 'sites-container';
+    
+    // Add each site name
+    Object.entries(supported_sites).forEach(([site, displayName]) => {
+        const siteLink = document.createElement('a');
+        siteLink.href = `http://www.${site}.com`;
+        siteLink.className = 'site-link';
+        siteLink.target = '_blank';
+        siteLink.textContent = displayName;
+        
+        sitesContainer.appendChild(siteLink);
     });
-    recursiveFetch(images_to_fetch, 0);
-}
-
-function recursiveLoad(images_to_fetch, index) {
-    var size = Object.keys(images_to_fetch).length;
-    if (index < size) {
-        var key = Object.keys(images_to_fetch)[index];
-        var link = images_to_fetch[key];
-
-        var base64 = "";
-        if (localStorage.getItem(key)) {
-            base64 = localStorage.getItem(key);
-        } else {
-            base64 = "/images/loader.gif";
-        }
-
-        var img_html_base64 = '<a href="http://www.' + key + '.com" class="sites-icon" target="_blank"><img class="brand_logo" width="50" height="50" src="' + base64 + '"/></a>'
-
-        var brand_logos_dynamic = document.getElementById('brand_logos_dynamic');
-        brand_logos_dynamic.innerHTML += img_html_base64;
-
-        recursiveLoad(images_to_fetch, index + 1);
-
-    }
-}
-
-function recursiveFetch(images_to_fetch, index) {
-    var size = Object.keys(images_to_fetch).length;
-    if (index < size) {
-
-        // Fetchig Process
-        var key = Object.keys(images_to_fetch)[index];
-        var img_url = images_to_fetch[key];
-        data = {
-            http_remote_url: img_url,
-            http_remote_file: "(binary)",
-            http_reverse_code: "",
-            http_compressimage: "1",
-            TF_nonce: "0f4a9e1824",
-            _wp_http_referer: "/online-tools/base64-image-converter/",
-            aatoolstoken: "3e4ft9f",
-            aatoolstoken_ip: "3qj3jb7"
-        }
-
-        var XHR = new XMLHttpRequest();
-        var urlEncodedData = "";
-        var urlEncodedDataPairs = [];
-        var name;
-        XHR.responseType = 'document';
-
-        // Turn the data object into an array of URL-encoded key/value pairs.
-        for (name in data) {
-            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
-        }
-
-        // Combine the pairs into a single string and replace all %-encoded spaces to 
-        // the '+' character; matches the behaviour of browser form submissions.
-        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-        // Define what happens on successful data submission
-        XHR.addEventListener('load', function (event) {
-
-            //console.log(XHR.responseXML.getElementById("ta_raw").value);
-            var img_html_value = XHR.responseXML.getElementById("ta_raw").value;
-
-            localStorage.setItem(key, img_html_value);
-            localStorage.setItem('NumberOfImagesCached', (index + 1));
-
-            document.getElementById('brand_logos_dynamic').innerHTML = "";
-            recursiveLoad(images_to_fetch, 0);
-            recursiveFetch(images_to_fetch, index + 1);
-        });
-
-        // Define what happens in case of error
-        XHR.addEventListener('error', function (event) {
-            console.log('Oops! Something goes wrong, FAILED TO LOAD IMAGES.');
-        });
-
-        // Set up our request
-        var theUrl = "https://www.askapache.com/online-tools/base64-image-converter/";
-        XHR.open('POST', theUrl);
-
-        // Add the required HTTP header for form data POST requests
-        XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // Finally, send our data.
-        XHR.send(urlEncodedData);
-
-        // Fetching process end
-    }
+    
+    brands_dynamic.appendChild(sitesContainer);
 }
