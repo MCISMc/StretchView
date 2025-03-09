@@ -1,123 +1,109 @@
 <p align="center"><img src="images/horizontal.png" alt="StretchView" height="120px"></p>
 
-# StretchView - Chrome Extension
+# StretchView - Ultimate Video Aspect Ratio Controller
 
-Force stretch videos to full screen display and remove annoying black bars from popular streaming websites
-An extension created for Google Chrome™ to give you full view experience, while watching online videos in Google Chrome™ Web Browser.
-Force stretch videos on all major streaming websites like YouTube, Netflix, Twitch, Amazon Prime Video, Hotstar, SonyLiv, JioCinema, AltBalaji, Voot, Zee5, ErosNow and more!. 
-With this extension, you can enjoy the truly full-screen viewing experience on computer/laptop screen by stretching or cropping the streaming video from a website to the desired corrected aspect ratio, and remove annoying Letterbox on video [black bars] as much as accurate cropping to your screen resolution from your favorite streaming websites. Also with Picture-in-Picture Mode which is specially for the users who would like to enjoy either live stream, watch tutorial videos while coding with it and any other videos while doing some work with enjoy watching the video in re-sizable mini popup window. YouTube Uninterrupted mode will maximize your viewing experience on YouTube with hiding suggested video overlays.
+> Transform your streaming experience by removing black bars and taking full control of video playback in Chrome™.
 
-* You can choose from the option buttons to select the desired mode of cropping or can use the shortcut-key "G" to cycle through all the available mode and for Picture-in-Picture Mode you can use the shortcut-key "Ctrl+B" to toggle On/Off. 
-* Picture-in-Picture Mode will let you stream your favorite video outside of the Google Chrome™ Web Browser.
-* Now with by-default enabled YouTube Uninterrupted mode, you won't see any Suggested Video Overlay On YouTube Videos anymore and enhance your YouTube Playback experience.
-* Video Adjustment Feature ( Beta ) added, you can correct the desired brightness, contrast, and saturation value for video player currently active on the supported website
+## 🎯 Key Features
 
-Feel free to tell me any things you like or dislike as well as graphical changes and I'll take everything into consideration. Thanks for trying out StrechView, and I hope you enjoy StrechView.
+- **Smart Video Stretching**: Automatically removes black bars from videos
+- **Intelligent Aspect Ratio Control**: Multiple viewing modes for perfect fit
+  - FullView Mode: Stretch video to fill screen
+  - StretchView Mode: Maintain aspect ratio while maximizing space
+  - Original Mode: Default video display
+- **Picture-in-Picture (PiP)**: Watch videos while browsing other tabs
+- **Video Enhancement Controls**:
+  - Brightness adjustment
+  - Contrast fine-tuning
+  - Saturation control
+- **Keyboard Shortcuts**:
+  - `Shift + G`: Toggle PiP mode
+  - `G`: Cycle through viewing modes
 
-## Download the extension from here 
+## 🎬 Supported Streaming Platforms
 
-[<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+- [YouTube](https://www.youtube.com)
+- [Netflix](https://www.netflix.com)
+- [Amazon Prime Video](https://www.primevideo.com)
+- [Disney+ Hotstar](https://www.hotstar.com)
+- [Sony LIV](https://www.sonyliv.com)
+- [Zee5](https://www.zee5.com)
+- [JioCinema](https://www.jiocinema.com)
+- [Voot](https://www.voot.com)
+- [Alt Balaji](https://www.altbalaji.com)
+- [Airtel Xstream](https://www.airtelxstream.in)
+- [MX Player](https://www.mxplayer.in)
+- [Twitch](https://www.twitch.tv)
+- [ErosNow](https://www.erosnow.com)
+- And more!
 
-### Works with
+## 🚀 Installation
 
-<img src="https://www.iconfinder.com/data/icons/2018-social-media-app-logos/1000/2018_social_media_popular_app_logo_youtube-128.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images-eu.ssl-images-amazon.com/images/I/41mpv9rBhmL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/207360008/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/174849096/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/207468084/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images.justwatch.com/icon/93795879/s100" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images-eu.ssl-images-amazon.com/images/I/316eQVg7QPL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://lh3.googleusercontent.com/SMlVlmn--w2tTPtk6kL2Y6vTgXhuO-sqi2Yzr9WzljMdBX5AER9OAnnwXv_vWkaA4A=s180-rw" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://www.apkmirror.com/wp-content/uploads/2019/10/5da89d0807d41.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://etimg.etb2bimg.com/thumb/msid-68917739,width-1200,resizemode-4/.jpg" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://d1nxzqpcg2bym0.cloudfront.net/itunes_connect/1067316596/9e8676ba-faae-11ea-958e-5db1cd97bea7/128x128" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://images-eu.ssl-images-amazon.com/images/I/515%2BF2vlqtL.png" height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://cdn4.iconfinder.com/data/icons/social-media-square-4/1024/square-11-128.png" height="50px">
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/ladceggegjmncgmjnnenegojgcinflci.svg)](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+[![Users](https://img.shields.io/chrome-web-store/users/ladceggegjmncgmjnnenegojgcinflci.svg)](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+[![Rating](https://img.shields.io/chrome-web-store/rating/ladceggegjmncgmjnnenegojgcinflci.svg)](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
 
+1. Visit the [Chrome Web Store](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+2. Click "Add to Chrome"
+3. Enjoy your enhanced viewing experience!
 
-## TO DO
-- Fix things as Google makes changes
+## 💡 How to Use
 
-## CHANGE LOG
+1. **Basic Usage**:
+   - Click the StretchView icon in your Chrome toolbar
+   - Choose between FullView or StretchView modes
+   - Toggle PiP mode as needed
 
-v5.4.3
---------------------
-- Dark Mode Added
-- Added Support for MXPlayer.in
+2. **Video Enhancement**:
+   - Use sliders to adjust brightness, contrast, and saturation
+   - Click "Reset" to restore default values
 
-v5.3
---------------------
-- Fixed the issue with loading logos
+3. **Keyboard Controls**:
+   - Use `Shift + G` for quick PiP toggle
+   - Press `G` to cycle through viewing modes
 
-v5.2
---------------------
-- Added Support for AirtelXstream.in
+## 🛡️ Privacy & Security
 
-v5.1
---------------------
-- YouTube Uninterrupted Mode restored back.
+- No data collection
+- No external tracking
+- Open source code
+- Regular security updates
+- Transparent functionality
 
-v5.0
---------------------
-- Changes made as per required from google web store policy
+## 🔄 Recent Updates
 
-v4.4.2
---------------------
-- Link to Rate extension has been added
-- New Logo Design
+### v6.0.0 (Latest)
+- Dark mode interface
+- Improved video detection
+- Enhanced compatibility with streaming platforms
+- Performance optimizations
 
-v4.3.10
---------------------
-- Extension update notification has been removed
-- Picture-in-Picture Mode now has a new shortcut-key : "Shift+G"
-- Supported website logo's for hotlink has been set to autoload with extension installation
+[View full changelog](CHANGELOG.md)
 
-v4.3.6
---------------------
-- Picture-in-Picture Mode added ( re-sizable mini player, can be viewed outside of the Google Chrome™ ),
-- YouTube Uninterrupted Mode added ( Hides suggested video overlay on YouTube videos ),
-- Added Support for following websites,
-- Twitch.tv, Facebook, Twitter, Instagram
+## 👨‍💻 Contributing
 
-v4.1
---------------------
-- Logo has been updated to new design
-- StrechView Mode has been redesigned and renames to FullView Mode and StrechView Mode
-- Video Adjustment Feature added ( BETA )
-- Fix some design code and improved loading time
+We welcome contributions! Feel free to:
+1. Fork the repository
+2. Create your feature branch
+3. Submit a pull request
 
-v3.4
---------------------
-- New UI updated
-- Fix some bugs and improved java-script to faster performance
+## ⭐ Show Your Support
 
-v3.3
---------------------
-- Added supported website logos and hotlinks to its website
-- Added Support for following websites,
-- ErosNow, Voot, Zee5, AltBalaji, and JioCinema  
+If you find StretchView useful, please:
+- Rate us on the [Chrome Web Store](https://chrome.google.com/webstore/detail/stretchview/ladceggegjmncgmjnnenegojgcinflci)
+- Star our [GitHub repository](https://github.com/MCISMc/StretchView)
+- Share with friends and colleagues
 
-v2.0
---------------------
-- Added Support for SoniLIV
-- Added Shortcut-key ("G") for fast switching between different modes of extension 
+## 📜 License
 
-v1.5
---------------------
-- Added Support for following websites,
-- YouTube, Amazon Prime Video, Netflix, Hotstar  
+This project is provided "AS IS", without warranty of any kind. All logos and trademarks are property of their respective owners.
 
-v1.0
---------------------
-- The first addition to Chrome Web Store
+## 🙏 Credits
 
+- [Morten Olsen](http://codepen.io/mortenolsendk/pen/QbvBYy) - Radio buttons design
+- [Pishang Ujeniya](https://github.com/pishangujeniya) - Core contributor
+- [ghostofiht](https://github.com/ghostofiht) - Logo design
 
-## Credits
-
-* Thanks to Morten Olsen for [this](http://codepen.io/mortenolsendk/pen/QbvBYy) awesome radio buttons.
-* Thanks to [Pishang Ujeniya](https://github.com/pishangujeniya) for actively participating to improve this extension .
-* Thanks to [ghostofiht](https://github.com/ghostofiht) for this new clean and simpler logo for extension.
-
-## Acknowledgments
-
-* Thanks to all the contributors who invested their precious time into this.
+<div align="center">
+Made with ❤️ in India
+</div>

@@ -43,7 +43,7 @@
       }
    ],
    "default_locale": "en",
-   "description": "Remove annoying black bars from video",
+   "description": "StretchView - Ultimate Video Aspect Ratio Controller & Picture-in-Picture Tool. Remove black bars from streaming videos on Netflix, YouTube, Prime Video & more. Features include:\n• Intelligent video stretching to fill your screen\n• Smart aspect ratio correction\n• Picture-in-Picture (PiP) mode with hotkey support\n• Video enhancement controls (brightness, contrast, saturation)\n• Works on major streaming platforms including Netflix, YouTube, Prime Video, Hotstar, SonyLIV, Zee5 & more\n• Keyboard shortcuts for quick control\n• No ads, no tracking, 100% privacy focused",
    "icons": {
       "128": "images/logo-128.png",
       "16": "images/logo-32.png",
