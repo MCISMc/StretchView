@@ -69,14 +69,9 @@
 - Open source code
 - Regular security updates
 - Transparent functionality
+- [Detailed Privacy Policy](docs/privacy-policy.md)
 
 ## 🔄 Recent Updates
-
-### v6.0.0 (Latest)
-- Dark mode interface
-- Improved video detection
-- Enhanced compatibility with streaming platforms
-- Performance optimizations
 
 [View full changelog](CHANGELOG.md)
 

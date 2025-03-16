@@ -2,7 +2,7 @@
 
 All notable changes to StretchView will be documented in this file.
 
-## [v6.0.0] - 2025-03-09
+## [v6.0.0]
 - Updated as per Google Web Store policy
 - Dark mode interface
 - Improved video detection
