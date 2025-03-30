@@ -180,62 +180,62 @@ var initEvents = function (StretchView) {
         StretchView.createCSS();
     });
 
-    $(document).on('keydown', null, 'g', function (event) {
-        var state = StretchView.mode;
+    // $(document).on('keydown', null, 'g', function (event) {
+    //     var state = StretchView.mode;
 
-        if (state < 2) {
-            state = StretchView.setMode(StretchView.mode + 1);
-        } else {
-            state = StretchView.setMode(0);
-        }
+    //     if (state < 2) {
+    //         state = StretchView.setMode(StretchView.mode + 1);
+    //     } else {
+    //         state = StretchView.setMode(0);
+    //     }
 
-        chrome.storage.local.set({ "extensionMode": state }, function () {
-        });
+    //     chrome.storage.local.set({ "extensionMode": state }, function () {
+    //     });
 
-        chrome.storage.local.get("extensionMode", function (results) {
-            var mode = results.extensionMode;
-            switch (mode) {
-                // 0: off; 1: stretch; 2: fix-aspect-ratio;
-                case 0:
-                    $("#off").prop("checked", true);
-                    break;
-                case 1:
-                    $("#forceStretch").prop("checked", true);
-                    break;
-                case 2:
-                    $("#forceAspect").prop("checked", true);
-                    break;
+    //     chrome.storage.local.get("extensionMode", function (results) {
+    //         var mode = results.extensionMode;
+    //         switch (mode) {
+    //             // 0: off; 1: stretch; 2: fix-aspect-ratio;
+    //             case 0:
+    //                 $("#off").prop("checked", true);
+    //                 break;
+    //             case 1:
+    //                 $("#forceStretch").prop("checked", true);
+    //                 break;
+    //             case 2:
+    //                 $("#forceAspect").prop("checked", true);
+    //                 break;
 
-            }
-        });
+    //         }
+    //     });
 
-    });
+    // });
 
-    $(document).on('keydown', null, 'shift+g', function (event) {
-        chrome.storage.local.get(['togglePiP'], function(result) {
-            const newState = !result.togglePiP;
-            chrome.storage.local.set({ "togglePiP": newState }, function () {
-                const videos = document.getElementsByTagName("video");
-                if (!videos.length) return;
+    // $(document).on('keydown', null, 'shift+g', function (event) {
+    //     chrome.storage.local.get(['togglePiP'], function(result) {
+    //         const newState = !result.togglePiP;
+    //         chrome.storage.local.set({ "togglePiP": newState }, function () {
+    //             const videos = document.getElementsByTagName("video");
+    //             if (!videos.length) return;
 
-                const video = Array.from(videos).find(v => !v.paused) || videos[0];
+    //             const video = Array.from(videos).find(v => !v.paused) || videos[0];
                 
-                try {
-                    if (newState) {
-                        if (document.pictureInPictureElement !== video) {
-                            video.requestPictureInPicture();
-                        }
-                    } else {
-                        if (document.pictureInPictureElement) {
-                            document.exitPictureInPicture();
-                        }
-                    }
-                } catch (error) {
-                    console.log('PiP error:', error);
-                }
-            });
-        });
-    });
+    //             try {
+    //                 if (newState) {
+    //                     if (document.pictureInPictureElement !== video) {
+    //                         video.requestPictureInPicture();
+    //                     }
+    //                 } else {
+    //                     if (document.pictureInPictureElement) {
+    //                         document.exitPictureInPicture();
+    //                     }
+    //                 }
+    //             } catch (error) {
+    //                 console.log('PiP error:', error);
+    //             }
+    //         });
+    //     });
+    // });
 
 
 
