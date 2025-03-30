@@ -27,7 +27,7 @@ $(document).ready(function () {
                 $("#forceAspect").addClass("active");
                 break;
         }
-        
+
         if (results.togglePiP) {
             $("#btnPiP").addClass('active');
         }
@@ -112,27 +112,27 @@ $(document).ready(function () {
     $("#forceStretch").click(function (e) {
         e.preventDefault();
         const isActive = $(this).hasClass('active');
-        
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             if (!tabs[0]) return;
-            
+
             const newMode = isActive ? 0 : 1;
-            
-            chrome.storage.local.set({ "extensionMode": newMode }, function() {
+
+            chrome.storage.local.set({ "extensionMode": newMode }, function () {
                 if (newMode === 1) {
                     $("#forceStretch").addClass('active');
                     $("#forceAspect").removeClass('active');
                 } else {
                     $("#forceStretch").removeClass('active');
                 }
-                
+
                 // Execute content script update
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     function: (mode) => {
                         // Trigger a custom event that the content script listens for
-                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', { 
-                            detail: { mode: mode } 
+                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', {
+                            detail: { mode: mode }
                         }));
                     },
                     args: [newMode]
@@ -145,27 +145,27 @@ $(document).ready(function () {
     $("#forceAspect").click(function (e) {
         e.preventDefault();
         const isActive = $(this).hasClass('active');
-        
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             if (!tabs[0]) return;
-            
+
             const newMode = isActive ? 0 : 2;
-            
-            chrome.storage.local.set({ "extensionMode": newMode }, function() {
+
+            chrome.storage.local.set({ "extensionMode": newMode }, function () {
                 if (newMode === 2) {
                     $("#forceAspect").addClass('active');
                     $("#forceStretch").removeClass('active');
                 } else {
                     $("#forceAspect").removeClass('active');
                 }
-                
+
                 // Execute content script update
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     function: (mode) => {
                         // Trigger a custom event that the content script listens for
-                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', { 
-                            detail: { mode: mode } 
+                        window.dispatchEvent(new CustomEvent('stretchview-mode-change', {
+                            detail: { mode: mode }
                         }));
                     },
                     args: [newMode]
@@ -177,12 +177,12 @@ $(document).ready(function () {
     // PIP button handler
     $("#btnPiP").click(function () {
         const isActive = $(this).hasClass('active');
-        
+
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             if (!tabs[0]) return;
-            
+
             // First update storage
-            chrome.storage.local.set({ "togglePiP": !isActive }, function() {
+            chrome.storage.local.set({ "togglePiP": !isActive }, function () {
                 // Then execute PiP functionality
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
@@ -194,19 +194,19 @@ $(document).ready(function () {
     });
 
     // Update storage listener to be more specific
-    chrome.storage.onChanged.addListener(function(changes) {
+    chrome.storage.onChanged.addListener(function (changes) {
         if ("togglePiP" in changes) {
             const isPiPEnabled = changes.togglePiP.newValue;
             $("#btnPiP").toggleClass('active', isPiPEnabled);
         }
     });
 
-    // Handle all link clicks
-    $(document).on('click', 'a', function(e) {
-        e.preventDefault();
-        const url = $(this).data('url') || $(this).attr('href');
+    // Handle all <a> tags with a 'data-url' attribute
+    $('a[data-url]').on('click', function (e) {
+        e.preventDefault(); // Prevent the default behavior of the <a> tag
+        const url = $(this).data('url'); // Get the value of the 'data-url' attribute
         if (url) {
-            chrome.tabs.create({ url: url });
+            chrome.tabs.create({ url: url }); // Open the URL in a new tab
         }
     });
 
@@ -214,23 +214,23 @@ $(document).ready(function () {
 
 function loadSiteNames(supported_sites) {
     const brands_dynamic = document.getElementById('brands_dynamic');
-    
+
     // Clear existing content
     brands_dynamic.innerHTML = '';
-    
+
     // Create a container for the site names
     const sitesContainer = document.createElement('div');
     sitesContainer.className = 'sites-container';
-    
+
     // Add each site name
     Object.entries(supported_sites).forEach(([site, displayName]) => {
         const siteLink = document.createElement('a');
         siteLink.className = 'site-link';
         siteLink.dataset.url = `https://www.${site}.com`;  // Store URL in data attribute
         siteLink.textContent = displayName;
-        
+
         sitesContainer.appendChild(siteLink);
     });
-    
+
     brands_dynamic.appendChild(sitesContainer);
 }
