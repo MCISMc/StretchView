@@ -2,6 +2,10 @@
 
 All notable changes to StretchView will be documented in this file.
 
+## [v6.1.0]
+- Temporary disabled the Short Cut keys Hot keys functionalities
+- Will be providing update for the same in next release
+
 ## [v6.0.0]
 - Updated as per Google Web Store policy
 - Dark mode interface

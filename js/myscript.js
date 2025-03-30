@@ -45,20 +45,20 @@ $(document).ready(function () {
     }
 
     //Kotkey event functionality
-    function initKeyboardEvent() {
-        $(document).on('keydown', null, 'g', function (event) {
-            console.log(event);
-            if (isEnabled === true) {
-                chrome.storage.local.set({ "extensionIsEnabled": false }, function () {
-                    isEnabled = false;
-                });
-            } else if (isEnabled === false) {
-                chrome.storage.local.set({ "extensionIsEnabled": true }, function () {
-                    isEnabled = true;
-                });
-            }
-        });
-    }
+    // function initKeyboardEvent() {
+    //     $(document).on('keydown', null, 'g', function (event) {
+    //         console.log(event);
+    //         if (isEnabled === true) {
+    //             chrome.storage.local.set({ "extensionIsEnabled": false }, function () {
+    //                 isEnabled = false;
+    //             });
+    //         } else if (isEnabled === false) {
+    //             chrome.storage.local.set({ "extensionIsEnabled": true }, function () {
+    //                 isEnabled = true;
+    //             });
+    //         }
+    //     });
+    // }
 
     //set or delete youtube timer
     function setYoutubeTimer(isNowEnabled) {
