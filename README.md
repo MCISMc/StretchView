@@ -69,7 +69,7 @@
 - Open source code
 - Regular security updates
 - Transparent functionality
-- [Detailed Privacy Policy](docs/privacy-policy.md)
+- [Detailed Privacy Policy](privacy-policy.md)
 
 ## 🔄 Recent Updates
 
