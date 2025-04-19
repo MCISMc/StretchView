@@ -15,5 +15,12 @@ relative_links:
 
 # Use README.md as index
 include:
-  - "../README.md"
+  - "../README.md" # Ensure this is correctly referenced
   - "privacy-policy.md"
+
+defaults:
+  - scope:
+      path: "" # Applies to all files
+      type: "README"
+    values:
+      permalink: "/index.html" # Set README.md as the homepage
