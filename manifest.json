@@ -37,7 +37,12 @@
             "https://*.mxplayer.in/*"
          ],
          "run_at": "document_start"
-      }
+      },
+      {
+         "css": ["css/youtubeFix.css"],
+         "matches": [ "https://*.youtube.com/*" ],
+         "run_at": "document_start"
+      }   
    ],
    "default_locale": "en",
    "description": "Remove black bars from streaming videos. Control aspect ratio, use PiP mode, and enhance video playback on popular platforms.",
@@ -57,5 +62,5 @@
    ],
    "short_name": "StretchView",
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "6.1.0"
+   "version": "6.2.0"
 }

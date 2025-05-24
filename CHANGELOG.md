@@ -2,6 +2,9 @@
 
 All notable changes to StretchView will be documented in this file.
 
+## [v6.2.0]
+- Re-added YouTube Uninterrupted Mode (Hides suggested video overlay)
+
 ## [v6.1.0]
 - Temporary disabled the Short Cut keys Hot keys functionalities
 - Will be providing update for the same in next release
